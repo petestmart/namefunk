@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 class SpikeProject extends Component {
 
     state = {
-        keyword: ''
+        keyword: '',
+        syns_id: 0,
     }
 
     handleChange = (event) => {
@@ -42,19 +43,31 @@ class SpikeProject extends Component {
 
     render() {
 
-        let eachKeyword = this.props.reduxState.spikeProjectReducer.map(
-            (keyword) => {
-                return keyword.meta.syns[0].map((word, i) => {
-                    return <li key={i} >{word}</li>
+        // let eachKeyword = this.props.reduxState.spikeProjectReducer.map(
+        //     (arrayOfObjects) => {
+        //         return arrayOfObjects.meta.syns[0].map((word, i) => {
+        //             return <li key={i} >{word}</li>
 
-                })
+        //         })
 
-            })
+        //     })
+
+        // let eachKeyword = this.props.reduxState.spikeProjectReducer.map(
+        //     (arrayOfObjects) => {
+        //         return arrayOfObjects.meta.syns[0].map((word, i) => {
+        //             this.setState({
+        //                 keyword: {word}
+        //             })
+
+        //         })
+
+        //     })
 
         let eachFunction = this.props.reduxState.functionReducer.map(
-            (keyword, id) => {
-                return <li key={id} >{keyword.meta.syns[0][0]}</li>
-
+            (arrayOfObjects) => {
+                return arrayOfObjects.meta.syns[0].map((word, i) => {
+                    return <li key={i} >{word}</li>
+                })
             }
         )
 
@@ -73,7 +86,8 @@ class SpikeProject extends Component {
                     <br />
                     Similar Terms:<br />
                     <ul>
-                        {eachKeyword}{eachFunction}
+                        {/* {eachKeyword} */}
+                        {eachFunction}
                     </ul>
                     <pre>{JSON.stringify(this.props.reduxState.spikeProjectReducer)}</pre>
                 </form>

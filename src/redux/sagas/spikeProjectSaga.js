@@ -15,7 +15,7 @@ function* getFunction(action) {
     try {
         const keywordResponse = yield axios.get(`/api/thesaurus?tag=${action.payload}`)
         console.log('getKeyword Response:', keywordResponse.data);
-        yield put({ type: 'SET_KEYWORD', payload: keywordResponse.data })
+        yield put({ type: 'SET_FUNCTION', payload: keywordResponse.data })
     } catch (error) {
         console.log('error in getKeyword Saga', error)
     }
