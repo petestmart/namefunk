@@ -43,8 +43,11 @@ class SpikeProject extends Component {
     render() {
 
         let eachKeyword = this.props.reduxState.spikeProjectReducer.map(
-            (keyword, id) => {
-                return <li key={id} >{keyword.meta.syns[0][0]}</li>
+            (keyword) => {
+                return keyword.meta.syns[0].map((word, i) => {
+                    return <li key={i} >{word}</li>
+
+                })
 
             })
 
