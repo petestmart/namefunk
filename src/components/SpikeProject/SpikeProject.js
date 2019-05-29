@@ -2,12 +2,23 @@ import React, { Component } from 'react';
 // import axios from 'axios';
 import { connect } from 'react-redux';
 
+// let eachKeyword = this.props.reduxState.spikeProjectReducer.map(
+//     (arrayOfObjects) => {
+//         return arrayOfObjects.meta.syns[0].map((word, i) => {
+//             return [word]
+//             // return {word}
+//         })
+
+//     })
+
 class SpikeProject extends Component {
 
     state = {
         keyword: '',
         syns_id: 0,
     }
+
+    
 
     handleChange = (event) => {
         console.log('Spike:', event.target.value)
@@ -19,6 +30,11 @@ class SpikeProject extends Component {
     handleClick = (event) => {
         event.preventDefault();
         this.props.dispatch({ type: 'SEARCH_KEYWORD', payload: this.state.keyword })
+    }
+
+    handleDeleteClick = (event) => {
+        event.preventDefault();
+        this.props.dispatch({ type: 'SEARCH_FUNCTION', payload: "delete" })
     }
 
     handleGetClick = (event) => {
@@ -36,21 +52,76 @@ class SpikeProject extends Component {
         this.props.dispatch({ type: 'SEARCH_FUNCTION', payload: "change" })
     }
 
-    handleDeleteClick = (event) => {
-        event.preventDefault();
-        this.props.dispatch({ type: 'SEARCH_FUNCTION', payload: "delete" })
+    nextSuggestion = () => {
+        // console.log('eachKeyword:', eachKeyword);
+        console.log('syns_id ',this.state.syns_id)
+        const newIndex = this.state.syns_id + 1;
+        // if (this.state.syns_id === this.eachKeyword.length -1){
+        //     this.setState({
+        //         syns_id: 0
+        //     })
+        // }
+        // else (
+            this.setState({
+                syns_id: newIndex
+            })
+        // )
     }
+
+    previousSuggestion = () => {
+        console.log('syns_id',this.state.syns_id)
+        const newIndex = this.state.syns_id -1;
+        this.setState({
+            syns_id: newIndex
+        })
+    }
+
+    // renderSuggestion = () => {
+    //     this.props.reduxState.spikeProjectReducer.map(
+    //         (arrayOfObjects) => {
+    //             return arrayOfObjects.meta.syns[0].map((word, i) => {
+    //                 return <li key={i} >{word}</li>
+
+    //             })
+
+    //         })
+
+    // }
+
+    // renderSuggestion = () => {
+    //     this.props.reduxState.spikeProjectReducer.map(
+    //         (arrayOfObjects) => {
+    //             return arrayOfObjects.meta.syns[0].map((word, i) => {
+    //                 return <li key={i} >{word}[0]</li>
+
+    //             })
+
+    //         })
+
+    // }
+
+    
 
     render() {
 
+        let currentKeyword;
+        let currentFunction;
+
+        if (this.props.reduxState.spikeProjectReducer.length != 0) {
+        currentKeyword = this.props.reduxState.spikeProjectReducer[0].meta.syns[0][this.state.syns_id]
+        // console.log=('currentKeyword', currentKeyword)
+        }
+
         // let eachKeyword = this.props.reduxState.spikeProjectReducer.map(
         //     (arrayOfObjects) => {
-        //         return arrayOfObjects.meta.syns[0].map((word, i) => {
-        //             return <li key={i} >{word}</li>
+        //         // return arrayOfObjects.meta.syns[0].map((words, i) => {
+        //         //     return <span key={i}>{words}</span>
+        //         //     // return {words}
+        //         // })
+        //         return <li></li>{arrayOfObjects.meta.syns[0][this.state.syns_id]}
 
-        //         })
 
-        //     })
+            // })
 
         // let eachKeyword = this.props.reduxState.spikeProjectReducer.map(
         //     (arrayOfObjects) => {
@@ -63,13 +134,19 @@ class SpikeProject extends Component {
 
         //     })
 
-        let eachFunction = this.props.reduxState.functionReducer.map(
-            (arrayOfObjects) => {
-                return arrayOfObjects.meta.syns[0].map((word, i) => {
-                    return <li key={i} >{word}</li>
-                })
-            }
-        )
+        // let eachFunction = this.props.reduxState.functionReducer.map(
+        //     (arrayOfObjects) => {
+        //         // return arrayOfObjects.meta.syns[0].map((functionSyns, i) => {
+        //         //     return <span key={i} >{functionSyns}</span>
+        //         return arrayOfObjects.meta.syns[0][this.state.syns_id]
+        //         // })
+        //     }
+        // )
+
+        if (this.props.reduxState.functionReducer.length != 0) {
+            currentFunction = this.props.reduxState.functionReducer[0].meta.syns[0][this.state.syns_id]
+            // console.log=('currentKeyword', currentKeyword)
+        }
 
 
 
@@ -85,10 +162,16 @@ class SpikeProject extends Component {
                     <button onClick={this.handleDeleteClick}>DELETE</button>
                     <br />
                     Similar Terms:<br />
-                    <ul>
-                        {/* {eachKeyword} */}
-                        {eachFunction}
-                    </ul>
+                    <button onClick={() => this.previousSuggestion()}>Previous</button>
+                    <button onClick={() => this.nextSuggestion()}>Next</button>
+                    <button>Save</button><br />
+                    {/* <ul> */}
+                    {currentFunction}{currentKeyword}
+                    
+                        
+                        {/* {this.renderSuggestion()} */}
+                    {/* </ul> */}
+                    
                     <pre>{JSON.stringify(this.props.reduxState.spikeProjectReducer)}</pre>
                 </form>
 
