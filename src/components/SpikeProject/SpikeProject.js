@@ -56,24 +56,31 @@ class SpikeProject extends Component {
         // console.log('eachKeyword:', eachKeyword);
         console.log('syns_id ',this.state.syns_id)
         const newIndex = this.state.syns_id + 1;
-        // if (this.state.syns_id === this.eachKeyword.length -1){
-        //     this.setState({
-        //         syns_id: 0
-        //     })
-        // }
-        // else (
+        if (this.state.syns_id === this.props.reduxState.spikeProjectReducer[0].meta.syns[0].length -1){
+            this.setState({
+                syns_id: 0
+            })
+        }
+        else (
             this.setState({
                 syns_id: newIndex
             })
-        // )
+        )
     }
 
     previousSuggestion = () => {
         console.log('syns_id',this.state.syns_id)
         const newIndex = this.state.syns_id -1;
-        this.setState({
-            syns_id: newIndex
-        })
+        if (this.state.syns_id === 0) {
+            this.setState({
+                syns_id: (this.props.reduxState.spikeProjectReducer[0].meta.syns[0].length -1)
+            })
+        }
+        else (
+            this.setState({
+                syns_id: newIndex
+            })
+        )
     }
 
     // renderSuggestion = () => {
