@@ -22,7 +22,8 @@
     "react-scripts": "^3.0.1",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
-    "redux-saga": "^1.0.2"
+    "redux-saga": "^1.0.2",
+    "@material-ui/icons": "latest"
   },
   "scripts": {
     "start": "node server/server.js",
@@ -33,7 +34,8 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.18.10",
+    "react-scripts": "latest"
   },
   "browserslist": [
     ">0.2%",
