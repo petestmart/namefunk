@@ -12,12 +12,12 @@ CREATE TABLE "user" (
 CREATE TABLE "project"
 (
     "id" SERIAL PRIMARY KEY,
-    "user_id" INT
+    "user_id" INT REFERENCES "user"
 );
 
 CREATE TABLE "words"
 (
     "id" SERIAL PRIMARY KEY,
     "text" VARCHAR (255),
-    "project_id" VARCHAR (255)
+    "project_id" VARCHAR (255) REFERENCES "project"
 );
