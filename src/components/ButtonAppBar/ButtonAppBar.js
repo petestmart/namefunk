@@ -8,6 +8,8 @@ import IconButton from '@material-ui/core/IconButton';
 import { createMuiTheme } from '@material-ui/core/styles';
 // import red from '@material-ui/core/colors/red';
 import { ThemeProvider } from '@material-ui/styles';
+import TemporaryDrawer from '../TemporaryDrawer/TemporaryDrawer';
+
 // import MenuIcon from '@material-ui/icons/Menu';
 
 const theme = createMuiTheme({
@@ -37,6 +39,7 @@ function ButtonAppBar() {
                 <Toolbar>
                     <IconButton edge="start" className={classes.menuButton} color="primary" aria-label="Menu">
                         {/* <MenuIcon /> */}
+                        <TemporaryDrawer />
                     </IconButton>
                     <Typography variant="h6" className={classes.title}>
                         NameFunk
