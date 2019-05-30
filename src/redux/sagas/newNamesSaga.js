@@ -22,11 +22,11 @@ function* getFunction(action) {
 } // end getKeyword Saga
 
 // Watcher Saga
-function* spikeProjectSaga() {
+function* newNamesSaga() {
     yield takeLatest('SEARCH_KEYWORD', getKeyword)
     yield takeLatest('SEARCH_FUNCTION', getFunction)
-} // end Watcher Saga spikeProjectSaga
+} // end Watcher Saga newNamesSaga
 
 
 
-export default spikeProjectSaga;
+export default newNamesSaga;

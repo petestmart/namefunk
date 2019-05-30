@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 // import axios from 'axios';
 import { connect } from 'react-redux';
-import './SpikeProject.css'
+import './NewNames.css'
 
-// let eachKeyword = this.props.reduxState.spikeProjectReducer.map(
+// let eachKeyword = this.props.reduxState.newNamesReducer.map(
 //     (arrayOfObjects) => {
 //         return arrayOfObjects.meta.syns[0].map((word, i) => {
 //             return [word]
@@ -12,7 +12,7 @@ import './SpikeProject.css'
 
 //     })
 
-class SpikeProject extends Component {
+class NewNames extends Component {
 
     state = {
         keyword: '',
@@ -57,7 +57,7 @@ class SpikeProject extends Component {
         // console.log('eachKeyword:', eachKeyword);
         console.log('syns_id ',this.state.syns_id)
         const newIndex = this.state.syns_id + 1;
-        if (this.state.syns_id === this.props.reduxState.spikeProjectReducer[0].meta.syns[0].length -1){
+        if (this.state.syns_id === this.props.reduxState.newNamesReducer[0].meta.syns[0].length -1){
             this.setState({
                 syns_id: 0
             })
@@ -74,7 +74,7 @@ class SpikeProject extends Component {
         const newIndex = this.state.syns_id -1;
         if (this.state.syns_id === 0) {
             this.setState({
-                syns_id: (this.props.reduxState.spikeProjectReducer[0].meta.syns[0].length -1)
+                syns_id: (this.props.reduxState.newNamesReducer[0].meta.syns[0].length -1)
             })
         }
         else (
@@ -85,7 +85,7 @@ class SpikeProject extends Component {
     }
 
     // renderSuggestion = () => {
-    //     this.props.reduxState.spikeProjectReducer.map(
+    //     this.props.reduxState.newNamesReducer.map(
     //         (arrayOfObjects) => {
     //             return arrayOfObjects.meta.syns[0].map((word, i) => {
     //                 return <li key={i} >{word}</li>
@@ -97,7 +97,7 @@ class SpikeProject extends Component {
     // }
 
     // renderSuggestion = () => {
-    //     this.props.reduxState.spikeProjectReducer.map(
+    //     this.props.reduxState.newNamesReducer.map(
     //         (arrayOfObjects) => {
     //             return arrayOfObjects.meta.syns[0].map((word, i) => {
     //                 return <li key={i} >{word}[0]</li>
@@ -115,12 +115,12 @@ class SpikeProject extends Component {
         let currentKeyword;
         let currentFunction;
 
-        if (this.props.reduxState.spikeProjectReducer.length != 0) {
-        currentKeyword = this.props.reduxState.spikeProjectReducer[0].meta.syns[0][this.state.syns_id]
+        if (this.props.reduxState.newNamesReducer.length != 0) {
+        currentKeyword = this.props.reduxState.newNamesReducer[0].meta.syns[0][this.state.syns_id]
         // console.log=('currentKeyword', currentKeyword)
         }
 
-        // let eachKeyword = this.props.reduxState.spikeProjectReducer.map(
+        // let eachKeyword = this.props.reduxState.newNamesReducer.map(
         //     (arrayOfObjects) => {
         //         // return arrayOfObjects.meta.syns[0].map((words, i) => {
         //         //     return <span key={i}>{words}</span>
@@ -131,7 +131,7 @@ class SpikeProject extends Component {
 
             // })
 
-        // let eachKeyword = this.props.reduxState.spikeProjectReducer.map(
+        // let eachKeyword = this.props.reduxState.newNamesReducer.map(
         //     (arrayOfObjects) => {
         //         return arrayOfObjects.meta.syns[0].map((word, i) => {
         //             this.setState({
@@ -180,7 +180,7 @@ class SpikeProject extends Component {
                     <button onClick={() => this.previousSuggestion()}>Previous</button>
                     <button onClick={() => this.nextSuggestion()}>Next</button>
                     <button>Save</button><br />
-                    <pre>{JSON.stringify(this.props.reduxState.spikeProjectReducer)}</pre>
+                    <pre>{JSON.stringify(this.props.reduxState.newNamesReducer)}</pre>
                 </form>
 
             </div>
@@ -190,9 +190,9 @@ class SpikeProject extends Component {
 
 const mapStateToProps = (reduxState) => {
     return {
-        // keywordState: reduxState.spikeProjectReducer
+        // keywordState: reduxState.newNamesReducer
         reduxState
     }
 }
 
-export default connect(mapStateToProps)(SpikeProject);
+export default connect(mapStateToProps)(NewNames);
