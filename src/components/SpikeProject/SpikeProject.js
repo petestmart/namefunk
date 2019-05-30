@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import axios from 'axios';
 import { connect } from 'react-redux';
+import './SpikeProject.css'
 
 // let eachKeyword = this.props.reduxState.spikeProjectReducer.map(
 //     (arrayOfObjects) => {
@@ -169,16 +170,16 @@ class SpikeProject extends Component {
                     <button onClick={this.handleDeleteClick}>DELETE</button>
                     <br />
                     Similar Terms:<br />
-                    <button onClick={() => this.previousSuggestion()}>Previous</button>
-                    <button onClick={() => this.nextSuggestion()}>Next</button>
-                    <button>Save</button><br />
+                    
                     {/* <ul> */}
-                    {currentFunction}{currentKeyword}
+                    <span className="currentSuggestion">{currentFunction}{currentKeyword}</span>
                     
                         
                         {/* {this.renderSuggestion()} */}
-                    {/* </ul> */}
-                    
+                    {/* </ul> */}<br /><br />
+                    <button onClick={() => this.previousSuggestion()}>Previous</button>
+                    <button onClick={() => this.nextSuggestion()}>Next</button>
+                    <button>Save</button><br />
                     <pre>{JSON.stringify(this.props.reduxState.spikeProjectReducer)}</pre>
                 </form>
 
