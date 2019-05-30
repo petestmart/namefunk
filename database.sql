@@ -8,3 +8,16 @@ CREATE TABLE "user" (
     "username" VARCHAR (80) UNIQUE NOT NULL,
     "password" VARCHAR (1000) NOT NULL
 );
+
+CREATE TABLE "project"
+(
+    "id" SERIAL PRIMARY KEY,
+    "user_id" INT
+);
+
+CREATE TABLE "words"
+(
+    "id" SERIAL PRIMARY KEY,
+    "text" VARCHAR (255),
+    "project_id" VARCHAR (255)
+);
