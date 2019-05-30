@@ -19,10 +19,8 @@ class NewNames extends Component {
         syns_id: 0,
     }
 
-    
-
     handleChange = (event) => {
-        console.log('Spike:', event.target.value)
+        console.log('Input Keyword:', event.target.value)
         this.setState({
             keyword: event.target.value
         })
@@ -82,6 +80,12 @@ class NewNames extends Component {
                 syns_id: newIndex
             })
         )
+    }
+
+    saveName = () => {
+        console.log('saveName pressed', this.props.reduxState.functionReducer[0].meta.syns[0][this.state.syns_id],this.props.reduxState.newNamesReducer[0].meta.syns[0][this.state.syns_id]);
+        this.props.dispatch({ type: 'SAVE_NAME', payload: this.state.keyword })
+
     }
 
     // renderSuggestion = () => {
@@ -169,7 +173,7 @@ class NewNames extends Component {
                     <button onClick={this.handlePutClick}> PUT </button>
                     <button onClick={this.handleDeleteClick}>DELETE</button>
                     <br />
-                    Similar Terms:<br />
+                    Your Function Is Named:<br />
                     
                     {/* <ul> */}
                     <span className="currentSuggestion">{currentFunction}{currentKeyword}</span>
@@ -179,7 +183,7 @@ class NewNames extends Component {
                     {/* </ul> */}<br /><br />
                     <button onClick={() => this.previousSuggestion()}>Previous</button>
                     <button onClick={() => this.nextSuggestion()}>Next</button>
-                    <button>Save</button><br />
+                    <button onClick={() => this.saveName()}>Save</button><br />
                     <pre>{JSON.stringify(this.props.reduxState.newNamesReducer)}</pre>
                 </form>
 
