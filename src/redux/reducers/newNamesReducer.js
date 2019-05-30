@@ -1,5 +1,5 @@
 
-const spikeProjectReducer = (state = [], action) => {
+const newNamesReducer = (state = [], action) => {
     if (action.type === 'SET_KEYWORD') {
         return action.payload
     }
@@ -9,4 +9,4 @@ const spikeProjectReducer = (state = [], action) => {
 
 
 
-export default spikeProjectReducer;
+export default newNamesReducer;

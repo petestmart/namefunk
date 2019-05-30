@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import SpikeProject from '../SpikeProject/SpikeProject';
+import NewNames from '../NewNames/NewNames';
 
 
 
@@ -10,7 +10,7 @@ import SpikeProject from '../SpikeProject/SpikeProject';
 // and then instead of `props.user.username` you could use `user.username`
 const UserPage = (props) => (
   <div>
-    <SpikeProject />
+    <NewNames />
     <h1 id="welcome">
       Welcome, {props.user.username}!
     </h1>
