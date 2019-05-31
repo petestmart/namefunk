@@ -75,6 +75,8 @@ class App extends Component {
         <div>
           {/* <Nav /> */}
           <ButtonAppBar />
+          <img src={logo} className="App-logo" alt="logo" />
+
           {/* <TemporaryDrawer /> */}
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
