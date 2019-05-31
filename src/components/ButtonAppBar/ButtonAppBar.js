@@ -7,6 +7,8 @@ import Button from '@material-ui/core/Button';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import TemporaryDrawer from '../TemporaryDrawer/TemporaryDrawer';
+import { connect } from 'react-redux';
+
 
 const theme = createMuiTheme({
     palette: {
@@ -26,7 +28,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-function ButtonAppBar() {
+function ButtonAppBar(props) {
     const classes = useStyles();
     return (
         <div className={classes.root}>
@@ -35,7 +37,7 @@ function ButtonAppBar() {
                 <Toolbar>
                         <TemporaryDrawer />
                     <Typography variant="h6" className={classes.title}>
-                        NameFunk
+                            <h1>Welcome, {props.user.username}!</h1>
           </Typography>
                     <Button color="inherit">Login</Button>
                 </Toolbar>
@@ -44,5 +46,7 @@ function ButtonAppBar() {
         </div>
     );
 }
-
-export default ButtonAppBar;
+const mapStateToProps = state => ({
+    user: state.user,
+});
+export default connect(mapStateToProps)(ButtonAppBar);

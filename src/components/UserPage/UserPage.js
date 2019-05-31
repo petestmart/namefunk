@@ -11,9 +11,9 @@ import NewNames from '../NewNames/NewNames';
 const UserPage = (props) => (
   <div>
     <NewNames />
-    <h1 id="welcome">
-      Welcome, {props.user.username}!
-    </h1>
+    {/* <h1 id="welcome">
+      {/* Welcome, {props.user.username}! */}
+    {/* </h1> */} 
     <p>Your ID is: {props.user.id}</p>
     <LogOutButton className="log-in" />
     

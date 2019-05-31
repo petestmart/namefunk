@@ -5,10 +5,10 @@ import {
   Redirect,
   Switch,
 } from 'react-router-dom';
-
+import logo from './logo.svg';
 import { connect } from 'react-redux';
 
-import Nav from '../Nav/Nav';
+// import Nav from '../Nav/Nav';
 import ButtonAppBar from '../ButtonAppBar/ButtonAppBar';
 // import TemporaryDrawer from '../TemporaryDrawer/TemporaryDrawer';
 import Footer from '../Footer/Footer';
