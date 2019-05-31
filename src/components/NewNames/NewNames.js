@@ -18,6 +18,7 @@ class NewNames extends Component {
     state = {
         keyword: '',
         syns_id: 0,
+        text: ''
     }
 
     handleChange = (event) => {
@@ -30,11 +31,25 @@ class NewNames extends Component {
     handleClick = (event) => {
         event.preventDefault();
         this.props.dispatch({ type: 'SEARCH_KEYWORD', payload: this.state.keyword })
+        if (this.props.reduxState.newNamesReducer.length > 0) {
+            let funkName = this.props.reduxState.functionReducer[0].meta.syns[0][this.state.syns_id];
+            let newName = this.props.reduxState.newNamesReducer[0].meta.syns[0][this.state.syns_id];
+            this.setState({
+                text: funkName,
+            })
+        }
     }
 
     handleDeleteClick = (event) => {
         event.preventDefault();
         this.props.dispatch({ type: 'SEARCH_FUNCTION', payload: "delete" })
+        const funkName = this.props.reduxState.functionReducer[0].meta.syns[0][this.state.syns_id];
+        const newName = this.props.reduxState.newNamesReducer[0].meta.syns[0][this.state.syns_id];
+        if (this.state.syns_id === this.props.reduxState.newNamesReducer[0].meta.syns[0].length - 1) {
+            this.setState({
+                text: funkName + newName,
+            })
+        }
     }
 
     handleGetClick = (event) => {
@@ -54,44 +69,69 @@ class NewNames extends Component {
 
     nextSuggestion = () => {
         // console.log('eachKeyword:', eachKeyword);
-        console.log('syns_id ',this.state.syns_id)
+        console.log('syns_id ', this.state.syns_id)
         const newIndex = this.state.syns_id + 1;
-        if (this.state.syns_id === this.props.reduxState.newNamesReducer[0].meta.syns[0].length -1){
+        if (this.state.syns_id === this.props.reduxState.newNamesReducer[0].meta.syns[0].length - 1) {
             this.setState({
-                syns_id: 0
+                syns_id: 0,
+                text: 'setStateTest3',
             })
         }
         else (
             this.setState({
-                syns_id: newIndex
+                syns_id: newIndex,
+                text: 'setStateTest4',
             })
         )
     }
 
     previousSuggestion = () => {
-        console.log('syns_id',this.state.syns_id)
-        const newIndex = this.state.syns_id -1;
+        console.log('syns_id', this.state.syns_id)
+        const newIndex = this.state.syns_id - 1;
         if (this.state.syns_id === 0) {
             this.setState({
-                syns_id: (this.props.reduxState.newNamesReducer[0].meta.syns[0].length -1)
+                syns_id: (this.props.reduxState.newNamesReducer[0].meta.syns[0].length - 1),
+                text: 'setStateTest1',
+
             })
         }
         else (
             this.setState({
-                syns_id: newIndex
+                syns_id: newIndex,
+                text: 'setStateTest2',
             })
         )
     }
 
+    nerfGun = () => {
+        console.log('nerfGun', this.state.text)
+        this.setState({
+            text: 'nerfGun',
+        })
+        this.stopper();
+    }
+
+    stopper = () => {
+        return (
+            (this.props.reduxState.newNamesReducer.length > 0) ?
+                this.shopVac() :
+                console.log('stopper', this.state.text)
+        )
+    }
+
+    shopVac = () => {
+        console.log('shopVac', this.state.text);
+    }
+
     saveName = () => {
-        if (this.props.reduxState.newNamesReducer.length != 0) {
-        // event.preventDefault();
         let funkName = this.props.reduxState.functionReducer[0].meta.syns[0][this.state.syns_id];
         let newName = this.props.reduxState.newNamesReducer[0].meta.syns[0][this.state.syns_id];
+        let text = funkName + newName;
         console.log('saveName pressed', funkName + newName);
-        this.props.dispatch({ type: 'SAVE_NAME', payload: this.state.keyword })
-        }
+        this.props.dispatch({ type: 'SAVE_NAME', payload: text })
+        
     }
+
 
     // renderSuggestion = () => {
     //     this.props.reduxState.newNamesReducer.map(
@@ -117,7 +157,7 @@ class NewNames extends Component {
 
     // }
 
-    
+
 
     render() {
 
@@ -125,8 +165,8 @@ class NewNames extends Component {
         let currentFunction;
 
         if (this.props.reduxState.newNamesReducer.length != 0) {
-        currentKeyword = this.props.reduxState.newNamesReducer[0].meta.syns[0][this.state.syns_id]
-        // console.log=('currentKeyword', currentKeyword)
+            currentKeyword = this.props.reduxState.newNamesReducer[0].meta.syns[0][this.state.syns_id]
+            // console.log=('currentKeyword', currentKeyword)
         }
 
         // let eachKeyword = this.props.reduxState.newNamesReducer.map(
@@ -138,7 +178,7 @@ class NewNames extends Component {
         //         return <li></li>{arrayOfObjects.meta.syns[0][this.state.syns_id]}
 
 
-            // })
+        // })
 
         // let eachKeyword = this.props.reduxState.newNamesReducer.map(
         //     (arrayOfObjects) => {
@@ -179,12 +219,12 @@ class NewNames extends Component {
                     <button onClick={this.handleDeleteClick}>DELETE</button>
                     <br />
                     Your Function Is Named:<br />
-                    
+
                     {/* <ul> */}
                     <span className="currentSuggestion">{currentFunction}{currentKeyword}</span>
-                    
-                        
-                        {/* {this.renderSuggestion()} */}
+
+
+                    {/* {this.renderSuggestion()} */}
                     {/* </ul> */}<br /><br />
                     <button onClick={() => this.previousSuggestion()}>Previous</button>
                     <button onClick={() => this.nextSuggestion()}>Next</button>

@@ -5,7 +5,8 @@ const pool = require('../modules/pool');
 require('dotenv').config();
 
 router.post('/', (req, res) => {
-    const queryText = `INSERT INTO "words" (text) VALUES ('project test text');`;
+    const text = req.body;
+    const queryText = `INSERT INTO "words" (text) VALUES ('testTacoText');`;
     pool.query(queryText)
         .then(() => res.sendStatus(201))
         .catch(() => res.sendStatus(500));
