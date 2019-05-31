@@ -25,7 +25,7 @@ function* postName(action) {
     try {
         const nameResponse = yield axios.post(`/api/project`)
         console.log('postName Response:', nameResponse.data);
-        yield put({ type: 'SET_KEYWORD', payload: nameResponse.data })
+        // yield put({ type: 'SET_KEYWORD', payload: nameResponse.data })
     } catch (error) {
         console.log('error in postName', error)
     }

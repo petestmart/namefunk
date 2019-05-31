@@ -84,9 +84,13 @@ class NewNames extends Component {
     }
 
     saveName = () => {
-        console.log('saveName pressed', this.props.reduxState.functionReducer[0].meta.syns[0][this.state.syns_id],this.props.reduxState.newNamesReducer[0].meta.syns[0][this.state.syns_id]);
+        if (this.props.reduxState.newNamesReducer.length != 0) {
+        // event.preventDefault();
+        let funkName = this.props.reduxState.functionReducer[0].meta.syns[0][this.state.syns_id];
+        let newName = this.props.reduxState.newNamesReducer[0].meta.syns[0][this.state.syns_id];
+        console.log('saveName pressed', funkName + newName);
         this.props.dispatch({ type: 'SAVE_NAME', payload: this.state.keyword })
-
+        }
     }
 
     // renderSuggestion = () => {
