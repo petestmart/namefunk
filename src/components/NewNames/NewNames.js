@@ -1,17 +1,8 @@
 import React, { Component } from 'react';
-// import axios from 'axios';
 
 import { connect } from 'react-redux';
 import './NewNames.css'
 
-// let eachKeyword = this.props.reduxState.newNamesReducer.map(
-//     (arrayOfObjects) => {
-//         return arrayOfObjects.meta.syns[0].map((word, i) => {
-//             return [word]
-//             // return {word}
-//         })
-
-//     })
 
 class NewNames extends Component {
 
@@ -99,33 +90,6 @@ class NewNames extends Component {
         
     }
 
-
-    // renderSuggestion = () => {
-    //     this.props.reduxState.newNamesReducer.map(
-    //         (arrayOfObjects) => {
-    //             return arrayOfObjects.meta.syns[0].map((word, i) => {
-    //                 return <li key={i} >{word}</li>
-
-    //             })
-
-    //         })
-
-    // }
-
-    // renderSuggestion = () => {
-    //     this.props.reduxState.newNamesReducer.map(
-    //         (arrayOfObjects) => {
-    //             return arrayOfObjects.meta.syns[0].map((word, i) => {
-    //                 return <li key={i} >{word}[0]</li>
-
-    //             })
-
-    //         })
-
-    // }
-
-
-
     render() {
 
         let currentKeyword;
@@ -136,43 +100,11 @@ class NewNames extends Component {
             // console.log=('currentKeyword', currentKeyword)
         }
 
-        // let eachKeyword = this.props.reduxState.newNamesReducer.map(
-        //     (arrayOfObjects) => {
-        //         // return arrayOfObjects.meta.syns[0].map((words, i) => {
-        //         //     return <span key={i}>{words}</span>
-        //         //     // return {words}
-        //         // })
-        //         return <li></li>{arrayOfObjects.meta.syns[0][this.state.syns_id]}
-
-
-        // })
-
-        // let eachKeyword = this.props.reduxState.newNamesReducer.map(
-        //     (arrayOfObjects) => {
-        //         return arrayOfObjects.meta.syns[0].map((word, i) => {
-        //             this.setState({
-        //                 keyword: {word}
-        //             })
-
-        //         })
-
-        //     })
-
-        // let eachFunction = this.props.reduxState.functionReducer.map(
-        //     (arrayOfObjects) => {
-        //         // return arrayOfObjects.meta.syns[0].map((functionSyns, i) => {
-        //         //     return <span key={i} >{functionSyns}</span>
-        //         return arrayOfObjects.meta.syns[0][this.state.syns_id]
-        //         // })
-        //     }
-        // )
 
         if (this.props.reduxState.functionReducer.length != 0) {
             currentFunction = this.props.reduxState.functionReducer[0].meta.syns[0][this.state.syns_id]
-            // console.log=('currentKeyword', currentKeyword)
+           
         }
-
-
 
         return (
             <div>
@@ -184,21 +116,20 @@ class NewNames extends Component {
                     <button onClick={this.handlePostClick}>POST</button>
                     <button onClick={this.handlePutClick}> PUT </button>
                     <button onClick={this.handleDeleteClick}>DELETE</button>
-                    <br />
+                    <br /><br />
                     Your Function Is Named:<br />
 
-                    {/* <ul> */}
                     <span className="currentSuggestion">{currentFunction}{currentKeyword}</span>
 
-
-                    {/* {this.renderSuggestion()} */}
-                    {/* </ul> */}<br /><br />
+                    <br /><br />
                     <button onClick={() => this.previousSuggestion()}>Previous</button>
                     <button onClick={() => this.nextSuggestion()}>Next</button>
                     <button onClick={() => this.saveName()}>Save</button><br />
                     {/* <pre>{JSON.stringify(this.props.reduxState.newNamesReducer)}</pre> */}
                 </form>
+                <div id="savedNames">
 
+                </div>
             </div>
         )
     }
