@@ -1,0 +1,38 @@
+.nav-title {
+    font-family: alfa slab one, arbutus, asset, 'Courier New', Courier, monospace;
+    /* font-family: 'Courier New', Courier, monospace; */
+    font-size: 24px;
+    font-weight: 700;
+    display: inline-block;
+    color: #f2f2f2;
+    padding-left: 10px;
+}
+
+.nav {
+  overflow: hidden;
+  background-color: #e61610;
+}
+
+.nav-link {
+  float: left;
+  color: #f2f2f2;
+  background-color: #e61610;
+  text-align: center;
+  padding: 24px 10px;
+  text-decoration: none;
+  font-size: 15px;
+
+  /* these last two make the logout button in
+  the nav bar look like another link */
+  border:none;
+  cursor: pointer;
+  outline:0;
+}
+
+.nav-link:hover {
+  background-color: #a01705fb;
+}
+
+.nav-right {
+  float: right;
+}
