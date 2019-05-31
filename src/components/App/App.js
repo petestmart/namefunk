@@ -27,7 +27,7 @@ import './App.css';
 class App extends Component {
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_USER' });
-    // this.ButtonAppBar();
+    this.props.dispatch({ type: 'FETCH_PROJECT'});
   }
 
   render() {

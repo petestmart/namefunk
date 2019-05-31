@@ -32,6 +32,17 @@ function* postName(action) {
     }
 }
 
+function* postProject(action) {
+    console.log('postProject');
+    try {
+        const projectResponse = yield axios.post(`/api/project/new`, action.payload);
+        console.log('action.payload', action.payload);
+        console.log('postProject Response:', projectResponse.data);
+    } catch (error) {
+        console.log('error in postProject', error)
+    }
+}
+
 // Watcher Saga
 function* newNamesSaga() {
     yield takeLatest('SEARCH_KEYWORD', getKeyword)

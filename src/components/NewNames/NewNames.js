@@ -117,7 +117,7 @@ class NewNames extends Component {
                     <button onClick={this.handlePutClick}> PUT </button>
                     <button onClick={this.handleDeleteClick}>DELETE</button>
                     <br /><br />
-                    Your Function Is Named:<br />
+                    <div id="displayProjectName">Your Function Name Related To <b>{this.state.keyword}</b>:</div><br />
 
                     <span className="currentSuggestion">{currentFunction}{currentKeyword}</span>
 
