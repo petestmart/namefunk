@@ -18,7 +18,6 @@ class NewNames extends Component {
     state = {
         keyword: '',
         syns_id: 0,
-        text: ''
     }
 
     handleChange = (event) => {
@@ -31,25 +30,13 @@ class NewNames extends Component {
     handleClick = (event) => {
         event.preventDefault();
         this.props.dispatch({ type: 'SEARCH_KEYWORD', payload: this.state.keyword })
-        if (this.props.reduxState.newNamesReducer.length > 0) {
-            let funkName = this.props.reduxState.functionReducer[0].meta.syns[0][this.state.syns_id];
-            let newName = this.props.reduxState.newNamesReducer[0].meta.syns[0][this.state.syns_id];
-            this.setState({
-                text: funkName,
-            })
-        }
+        
     }
 
     handleDeleteClick = (event) => {
         event.preventDefault();
         this.props.dispatch({ type: 'SEARCH_FUNCTION', payload: "delete" })
-        const funkName = this.props.reduxState.functionReducer[0].meta.syns[0][this.state.syns_id];
-        const newName = this.props.reduxState.newNamesReducer[0].meta.syns[0][this.state.syns_id];
-        if (this.state.syns_id === this.props.reduxState.newNamesReducer[0].meta.syns[0].length - 1) {
-            this.setState({
-                text: funkName + newName,
-            })
-        }
+        
     }
 
     handleGetClick = (event) => {
@@ -74,13 +61,13 @@ class NewNames extends Component {
         if (this.state.syns_id === this.props.reduxState.newNamesReducer[0].meta.syns[0].length - 1) {
             this.setState({
                 syns_id: 0,
-                text: 'setStateTest3',
+                
             })
         }
         else (
             this.setState({
                 syns_id: newIndex,
-                text: 'setStateTest4',
+                
             })
         )
     }
@@ -91,38 +78,18 @@ class NewNames extends Component {
         if (this.state.syns_id === 0) {
             this.setState({
                 syns_id: (this.props.reduxState.newNamesReducer[0].meta.syns[0].length - 1),
-                text: 'setStateTest1',
 
             })
         }
         else (
             this.setState({
                 syns_id: newIndex,
-                text: 'setStateTest2',
+               
             })
         )
     }
 
-    nerfGun = () => {
-        console.log('nerfGun', this.state.text)
-        this.setState({
-            text: 'nerfGun',
-        })
-        this.stopper();
-    }
-
-    stopper = () => {
-        return (
-            (this.props.reduxState.newNamesReducer.length > 0) ?
-                this.shopVac() :
-                console.log('stopper', this.state.text)
-        )
-    }
-
-    shopVac = () => {
-        console.log('shopVac', this.state.text);
-    }
-
+    
     saveName = () => {
         let funkName = this.props.reduxState.functionReducer[0].meta.syns[0][this.state.syns_id];
         let newName = this.props.reduxState.newNamesReducer[0].meta.syns[0][this.state.syns_id];
@@ -229,7 +196,7 @@ class NewNames extends Component {
                     <button onClick={() => this.previousSuggestion()}>Previous</button>
                     <button onClick={() => this.nextSuggestion()}>Next</button>
                     <button onClick={() => this.saveName()}>Save</button><br />
-                    <pre>{JSON.stringify(this.props.reduxState.newNamesReducer)}</pre>
+                    {/* <pre>{JSON.stringify(this.props.reduxState.newNamesReducer)}</pre> */}
                 </form>
 
             </div>

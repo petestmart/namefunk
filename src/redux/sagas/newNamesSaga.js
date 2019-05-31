@@ -23,7 +23,8 @@ function* getFunction(action) {
 
 function* postName(action) {
     try {
-        const nameResponse = yield axios.post(`/api/project`)
+        const nameResponse = yield axios.post(`/api/project`, {text: action.payload});
+        console.log('action.payload', action.payload);
         console.log('postName Response:', nameResponse.data);
         // yield put({ type: 'SET_KEYWORD', payload: nameResponse.data })
     } catch (error) {
