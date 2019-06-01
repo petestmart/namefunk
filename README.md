@@ -3,12 +3,6 @@ This version uses React, Redux, Express, Passport, and PostgreSQL (a full list o
 
 We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
 
-## Download (Don't Clone) This Repository
-
-* Don't Fork or Clone. Instead, click the `Clone or Download` button and select `Download Zip`.
-* Unzip the project and start with the code in that folder.
-* Create a new GitHub project and push this code to the new repository.
-
 ## Prerequisites
 
 Before you get started, make sure you have the following software installed on your computer:
@@ -19,17 +13,10 @@ Before you get started, make sure you have the following software installed on y
 
 ## Create database and table
 
-Create a new database called `prime_app` and create a `user` table:
+Create a new database called `namefunk` and create tables in using the SQL commands located in the database.sql file
 
-```SQL
-CREATE TABLE "user" (
-    "id" SERIAL PRIMARY KEY,
-    "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
-);
-```
 
-If you would like to name your database something else, you will need to change `prime_app` to the name of your new database name in `server/modules/pool.js`
+If you would like to name your database something else, you will need to change `namefunk` to the name of your new database name in `server/modules/pool.js`
 
 ## Development Setup Instructions
 
@@ -43,16 +30,6 @@ If you would like to name your database something else, you will need to change 
 * Run `npm run server`
 * Run `npm run client`
 * Navigate to `localhost:3000`
-
-## Debugging
-
-To debug, you will need to run the client-side separately from the server. Start the client by running the command `npm run client`. Start the debugging server by selecting the Debug button.
-
-![VSCode Toolbar](documentation/images/vscode-toolbar.png)
-
-Then make sure `Launch Program` is selected from the dropdown, then click the green play arrow.
-
-![VSCode Debug Bar](documentation/images/vscode-debug-bar.png)
 
 
 ## Testing Routes with Postman
