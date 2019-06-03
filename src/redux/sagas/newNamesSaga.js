@@ -23,7 +23,7 @@ function* getFunction(action) {
 
 function* postName(action) {
     try {
-        const nameResponse = yield axios.post(`/api/project`, {text: action.payload});
+        const nameResponse = yield axios.post(`/api/name`, {text: action.payload});
         console.log('action.payload', action.payload);
         console.log('postName Response:', nameResponse.data);
         // yield put({ type: 'SET_KEYWORD', payload: nameResponse.data })
@@ -35,7 +35,7 @@ function* postName(action) {
 function* postProject(action) {
     console.log('postProject');
     try {
-        const projectResponse = yield axios.post(`/api/project/new`, action.payload);
+        const projectResponse = yield axios.post(`/api/project`, action.payload);
         console.log('action.payload', action.payload);
         console.log('postProject Response:', projectResponse.data);
     } catch (error) {
