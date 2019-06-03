@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-
+import SavedNames from '../SavedNames/SavedNames';
 import { connect } from 'react-redux';
 import './NewNames.css'
 import swal from 'sweetalert';
+import UserProjects from '../UserProjects/UserProjects';
 
 class NewNames extends Component {
 
@@ -147,9 +148,8 @@ class NewNames extends Component {
                     <button onClick={() => this.saveName()}>Save</button><br />
                     {/* <pre>{JSON.stringify(this.props.reduxState.newNamesReducer)}</pre> */}
                 </form>
-                <div id="savedNames">
-
-                </div>
+                <SavedNames />
+                <UserProjects />
             </div>
         )
     }

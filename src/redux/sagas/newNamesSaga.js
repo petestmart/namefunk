@@ -5,7 +5,7 @@ import axios from 'axios';
 function* getKeywordPostProject(action) {
     getKeyword(action);
     postProject(action);
-}
+} // end getKeywordPostProject Saga
 
 // Send keyword to thesaurus.router
 function* getKeyword(action) {
