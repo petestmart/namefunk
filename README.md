@@ -1,5 +1,6 @@
 # NameFunk - The Function Naming Tool For Programmers
-NameFunk is the application for programmers around the globe to cut down on decision fatigue by telling you what to name your functions. Simply enter a term that defines your project and NameFunk will provide you with ideas. Create an account to save your function names and come back later to reference them.
+
+NameFunk is the application for programmers around the globe to cut down on decision fatigue by telling you what to name your functions.  Simply enter a term that defines your project and NameFunk will provide you with ideas.  Create an account to save your function names and come back later to reference them.  
 
 This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
 
