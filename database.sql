@@ -12,7 +12,8 @@ CREATE TABLE "user" (
 CREATE TABLE "project"
 (
     "id" SERIAL PRIMARY KEY,
-    "user_id" INT REFERENCES "user"
+    "user_id" INT REFERENCES "user",
+    "project_name" VARCHAR NOT NULL
 );
 
 CREATE TABLE "words"

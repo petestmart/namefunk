@@ -11,7 +11,7 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
-import logo from '../App/logo.svg';
+// import logo from '../App/logo.svg';
 
 
 const useStyles = makeStyles({
@@ -78,32 +78,6 @@ function TemporaryDrawer() {
         </div>
     );
 
-    // const fullList = side => (
-    //     <div
-    //         className={classes.fullList}
-    //         role="presentation"
-    //         onClick={toggleDrawer(side, false)}
-    //         onKeyDown={toggleDrawer(side, false)}
-    //     >
-    //         <List>
-    //             {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-    //                 <ListItem button key={text}>
-    //                     <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-    //                     <ListItemText primary={text} />
-    //                 </ListItem>
-    //             ))}
-    //         </List>
-    //         <Divider />
-    //         <List>
-    //             {['All mail', 'Trash', 'Spam'].map((text, index) => (
-    //                 <ListItem button key={text}>
-    //                     <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-    //                     <ListItemText primary={text} />
-    //                 </ListItem>
-    //             ))}
-    //         </List>
-    //     </div>
-    // );
 
     return (
         <div>
