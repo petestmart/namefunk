@@ -11,12 +11,14 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
+import logo from '../App/logo.svg';
 
 
 const useStyles = makeStyles({
     list: {
         width: 250,
     },
+
     fullList: {
         width: 'auto',
     },
@@ -44,16 +46,29 @@ function TemporaryDrawer() {
             onKeyDown={toggleDrawer(side, false)}
         >
             <List>
-                {['New Thing 1', 'New Thing 2', 'New Thing 3', 'New Thing 4'].map((text, index) => (
+                {['NameFunk'].map((text, index) => (
                     <ListItem button key={text}>
-                        <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                            <ListItemIcon>{index % 2 === 0 ?
+                            <MenuIcon /> : <MenuIcon />}</ListItemIcon>
+                            <ListItemText primary={text} />
+                    </ListItem>
+                ))}
+            </List>
+
+            <Divider />
+
+            <List>
+                {['Get More Names', 'View / Edit Project', 'My Projects', 'New Project'].map((text, index) => (
+                    <ListItem button key={text}>
+                        <ListItemIcon>{index % 2 === 0 ?
+                            <InboxIcon /> : <MailIcon />}</ListItemIcon>
                         <ListItemText primary={text} />
                     </ListItem>
                 ))}
             </List>
             <Divider />
             <List>
-                {['Other Thing 1', 'Other Thing 2', 'Other Thing 3'].map((text, index) => (
+                {['Logout'].map((text, index) => (
                     <ListItem button key={text}>
                         <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                         <ListItemText primary={text} />

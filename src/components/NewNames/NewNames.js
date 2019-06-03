@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 import './NewNames.css'
-
+import swal from 'sweetalert';
 
 class NewNames extends Component {
 
@@ -18,16 +18,41 @@ class NewNames extends Component {
         })
     }
 
+    // handleClickStopper = () => {
+    //     console.log('clickStopper')
+    //     return (
+    //         (this.props.reduxState.newNamesReducer[0].meta > 0) ?
+    //         this.handleClick() :
+    //         <div></div>
+    //     )
+    // }
+
     handleClick = (event) => {
         event.preventDefault();
-        this.props.dispatch({ type: 'SEARCH_KEYWORD', payload: this.state.keyword })
-        
+
+
+        if (this.state.keyword === '') {
+            swal("Howdy, Friend", "You'll need to enter a keyword before we can find you some new names.")
+        }
+        // else if (this.props.reduxState.newNamesReducer.length == 0) {
+        //     this.handleClickStopper()
+        // }
+        // else if (this.props.reduxState.newNamesReducer[0].meta.id[0] != this.state.keyword) {
+        //     swal("Sorry, Friend", "That keyword has no results.")
+        // }
+        else {
+            this.props.dispatch({ type: 'SEARCH_KEYWORD', payload: this.state.keyword })
+        }
+
+
+
+
     }
 
     handleDeleteClick = (event) => {
         event.preventDefault();
         this.props.dispatch({ type: 'SEARCH_FUNCTION', payload: "delete" })
-        
+
     }
 
     handleGetClick = (event) => {
@@ -52,13 +77,13 @@ class NewNames extends Component {
         if (this.state.syns_id === this.props.reduxState.newNamesReducer[0].meta.syns[0].length - 1) {
             this.setState({
                 syns_id: 0,
-                
+
             })
         }
         else (
             this.setState({
                 syns_id: newIndex,
-                
+
             })
         )
     }
@@ -75,19 +100,19 @@ class NewNames extends Component {
         else (
             this.setState({
                 syns_id: newIndex,
-               
+
             })
         )
     }
 
-    
+
     saveName = () => {
         let funkName = this.props.reduxState.functionReducer[0].meta.syns[0][this.state.syns_id];
         let newName = this.props.reduxState.newNamesReducer[0].meta.syns[0][this.state.syns_id];
         let text = funkName + newName;
         console.log('saveName pressed', funkName + newName);
         this.props.dispatch({ type: 'SAVE_NAME', payload: text })
-        
+
     }
 
     render() {
@@ -103,7 +128,7 @@ class NewNames extends Component {
 
         if (this.props.reduxState.functionReducer.length != 0) {
             currentFunction = this.props.reduxState.functionReducer[0].meta.syns[0][this.state.syns_id]
-           
+
         }
 
         return (
