@@ -18,21 +18,12 @@ class NewNames extends Component {
         })
     }
 
-    // handleClickStopper = () => {
-    //     console.log('clickStopper')
-    //     return (
-    //         (this.props.reduxState.newNamesReducer[0].meta > 0) ?
-    //         this.handleClick() :
-    //         <div></div>
-    //     )
-    // }
-
     handleClick = (event) => {
         event.preventDefault();
 
-
+        // Sends User Input to newNamesSaga (Then Thesaurus API and also Starts Route To DB)
         if (this.state.keyword === '') {
-            swal("Howdy, Friend", "You'll need to enter a keyword before we can find you some new names.")
+            swal("Howdy, Friend", "You'll need to enter a keyword before we can find you some names.")
         }
         // else if (this.props.reduxState.newNamesReducer.length == 0) {
         //     this.handleClickStopper()
@@ -44,32 +35,34 @@ class NewNames extends Component {
             this.props.dispatch({ type: 'SEARCH_KEYWORD', payload: this.state.keyword })
         }
 
+    } // End function handleClick
 
-
-
-    }
-
+    // Handles DELETE NAME SUGGESTIONS - Does not delete anything
     handleDeleteClick = (event) => {
         event.preventDefault();
         this.props.dispatch({ type: 'SEARCH_FUNCTION', payload: "delete" })
 
-    }
+    } // End function handleDeleteClick
 
+    // Handles GET NAME SUGGESTIONS - Not an actual GET function
     handleGetClick = (event) => {
         event.preventDefault();
         this.props.dispatch({ type: 'SEARCH_FUNCTION', payload: "fetch" })
-    }
+    } // End function handleGetClick
 
+    // Handles POST NAME SUGGESTIONS - Not a typical POST function
     handlePostClick = (event) => {
         event.preventDefault();
         this.props.dispatch({ type: 'SEARCH_FUNCTION', payload: "post" })
-    }
+    } // End function handlePostClick
 
+    // Handles PUT NAME SUGGESTIONS - Not an actual PUT function
     handlePutClick = (event) => {
         event.preventDefault();
         this.props.dispatch({ type: 'SEARCH_FUNCTION', payload: "change" })
-    }
+    } // End function handlePutClick
 
+    // Moves To Next Suggestion - Carousel - Increments Array Index by 1
     nextSuggestion = () => {
         // console.log('eachKeyword:', eachKeyword);
         console.log('syns_id ', this.state.syns_id)
@@ -86,8 +79,9 @@ class NewNames extends Component {
 
             })
         )
-    }
+    } // End function nextSuggestion
 
+    // Moves To Previous Suggestion - Carousel - Decrements Array Index by 1
     previousSuggestion = () => {
         console.log('syns_id', this.state.syns_id)
         const newIndex = this.state.syns_id - 1;
@@ -103,9 +97,9 @@ class NewNames extends Component {
 
             })
         )
-    }
+    } // End function previousSuggestion
 
-
+    
     saveName = () => {
         let funkName = this.props.reduxState.functionReducer[0].meta.syns[0][this.state.syns_id];
         let newName = this.props.reduxState.newNamesReducer[0].meta.syns[0][this.state.syns_id];
