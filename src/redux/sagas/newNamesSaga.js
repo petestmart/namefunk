@@ -1,6 +1,7 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
+// Send keyword to thesaurus.router
 function* getKeyword(action) {
     try {
         const keywordResponse = yield axios.get(`/api/thesaurus?tag=${action.payload}`)
@@ -11,6 +12,7 @@ function* getKeyword(action) {
     }
 } // end getKeyword Saga
 
+// Send function type to thesaurus.router
 function* getFunction(action) {
     try {
         const keywordResponse = yield axios.get(`/api/thesaurus?tag=${action.payload}`)
@@ -21,6 +23,7 @@ function* getFunction(action) {
     }
 } // end getKeyword Saga
 
+// Post Function Name That User Would Like To Save
 function* postName(action) {
     try {
         const nameResponse = yield axios.post(`/api/name`, {text: action.payload});
@@ -30,8 +33,9 @@ function* postName(action) {
     } catch (error) {
         console.log('error in postName', error)
     }
-}
+} // end postName Saga
 
+// Start New Project Based on Keyword Entered by User
 function* postProject(action) {
     console.log('postProject');
     try {
@@ -40,7 +44,7 @@ function* postProject(action) {
         console.log('postProject Response:', projectResponse.data);
     } catch (error) {
         console.log('error in postProject', error)
-    }
+    } // end postProject Saga
 }
 
 // Watcher Saga

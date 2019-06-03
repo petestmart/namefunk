@@ -99,7 +99,7 @@ class NewNames extends Component {
         )
     } // End function previousSuggestion
 
-    
+    // Sends Suggested Function name to newNamesSaga (Then to DB via name.router)
     saveName = () => {
         let funkName = this.props.reduxState.functionReducer[0].meta.syns[0][this.state.syns_id];
         let newName = this.props.reduxState.newNamesReducer[0].meta.syns[0][this.state.syns_id];
@@ -107,19 +107,20 @@ class NewNames extends Component {
         console.log('saveName pressed', funkName + newName);
         this.props.dispatch({ type: 'SAVE_NAME', payload: text })
 
-    }
+    } // End function saveName
 
     render() {
 
         let currentKeyword;
         let currentFunction;
 
+        // Wait until load 
         if (this.props.reduxState.newNamesReducer.length != 0) {
             currentKeyword = this.props.reduxState.newNamesReducer[0].meta.syns[0][this.state.syns_id]
             // console.log=('currentKeyword', currentKeyword)
         }
 
-
+        // Wait until load 
         if (this.props.reduxState.functionReducer.length != 0) {
             currentFunction = this.props.reduxState.functionReducer[0].meta.syns[0][this.state.syns_id]
 
