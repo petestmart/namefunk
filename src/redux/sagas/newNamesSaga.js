@@ -1,6 +1,12 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
+// Call both getKeyword & postProject Sagas
+function* getKeywordPostProject(action) {
+    getKeyword(action);
+    postProject(action);
+}
+
 // Send keyword to thesaurus.router
 function* getKeyword(action) {
     try {
@@ -49,8 +55,7 @@ function* postProject(action) {
 
 // Watcher Saga
 function* newNamesSaga() {
-    yield takeLatest('SEARCH_KEYWORD', getKeyword)
-    yield takeLatest('SEARCH_KEYWORD', postProject)
+    yield takeLatest('SEARCH_KEYWORD', getKeywordPostProject)
     yield takeLatest('SEARCH_FUNCTION', getFunction)
     yield takeLatest('SAVE_NAME', postName)
 } // end Watcher Saga newNamesSaga
