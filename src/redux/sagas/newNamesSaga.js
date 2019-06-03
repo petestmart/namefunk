@@ -39,7 +39,7 @@ function* postName(action) {
 function* postProject(action) {
     console.log('postProject');
     try {
-        const projectResponse = yield axios.post(`/api/project`, action.payload);
+        const projectResponse = yield axios.post(`/api/project`, {project_name: action.payload});
         console.log('action.payload', action.payload);
         console.log('postProject Response:', projectResponse.data);
     } catch (error) {
@@ -50,6 +50,7 @@ function* postProject(action) {
 // Watcher Saga
 function* newNamesSaga() {
     yield takeLatest('SEARCH_KEYWORD', getKeyword)
+    yield takeLatest('SEARCH_KEYWORD', postProject)
     yield takeLatest('SEARCH_FUNCTION', getFunction)
     yield takeLatest('SAVE_NAME', postName)
 } // end Watcher Saga newNamesSaga
