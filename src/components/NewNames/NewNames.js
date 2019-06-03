@@ -24,7 +24,7 @@ class NewNames extends Component {
 
         // Sends User Input to newNamesSaga (Then Thesaurus API and also Starts Route To DB)
         if (this.state.keyword === '') {
-            swal("Howdy, Friend", "You'll need to enter a keyword before we can find you some names.")
+            swal("Howdy, Friend", "You'll need to enter a keyword before we can name your function.")
         }
         // else if (this.props.reduxState.newNamesReducer.length == 0) {
         //     this.handleClickStopper()

@@ -8,10 +8,10 @@ require('dotenv').config();
 // Sends Saved Function Name To The Database
 router.post('/', (req, res) => {
     const text = req.body.text;
-    const id = req.body.project_id;
+    // const id = req.body.project_id;
     console.log('req.body.text:', req.body.text);
-    const queryText = `INSERT INTO "words" (text, project_id) VALUES ($1, $2);`;
-    pool.query(queryText, [text, id])
+    const queryText = `INSERT INTO "words" (text, project_id) VALUES ($1, 1);`;
+    pool.query(queryText, [text])
         .then(() => res.sendStatus(201))
         .catch(() => res.sendStatus(500));
 }); // End router.post/api/name
@@ -19,7 +19,7 @@ router.post('/', (req, res) => {
 // Gets Saved Names from the Database
 router.get('/', (req, res) => {
     const queryText = `SELECT`
-    axios.get(queryText)
+    pool.query(queryText)
         .then(response => {
             console.log('get saved names response:', response.data)
             res.send(reponse.data)

@@ -1,6 +1,6 @@
 /* the only line you likely need to change is
 
- database: 'prime_app',
+ database: 'namefunk',
 
  change `prime_app` to the name of your database, and you should be all set!
 */

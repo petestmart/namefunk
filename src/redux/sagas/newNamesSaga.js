@@ -3,8 +3,8 @@ import axios from 'axios';
 
 // Call both getKeyword & postProject Sagas
 function* getKeywordPostProject(action) {
-    getKeyword(action);
-    postProject(action);
+    yield getKeyword(action);
+    yield postProject(action);
 } // end getKeywordPostProject Saga
 
 // Send keyword to thesaurus.router
@@ -28,6 +28,10 @@ function* getFunction(action) {
         console.log('error in getKeyword Saga', error)
     }
 } // end getKeyword Saga
+
+function* getProject(action) {
+    
+}
 
 // Post Function Name That User Would Like To Save
 function* postName(action) {
