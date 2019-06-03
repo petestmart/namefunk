@@ -4,6 +4,7 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 const pool = require('../modules/pool');
 require('dotenv').config();
 
+// Sends Project Name To DB.  Associates User with Project
 router.post('/', (req, res) => {
     console.log('req.body', req.body.text)
     // const text = req.body.text;
@@ -11,6 +12,6 @@ router.post('/', (req, res) => {
     pool.query(queryText)
         .then(() => res.sendStatus(201))
         .catch(() => res.sendStatus(500));
-});
+}); // End router.post/api/project
 
 module.exports = router;
