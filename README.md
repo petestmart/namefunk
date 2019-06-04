@@ -80,6 +80,18 @@ This code is also heavily commented. We recommend reading through the comments, 
   * LogOutButton/LogOutButton
   * ProtectedRoute/ProtectedRoute
 
+## Technologies Used
+* HTML5
+* CSS
+* React.js
+* React-Redux
+* Redux-Saga
+* Node.js
+* Express
+* Axios
+* Material UI
+* SweetAlert
+
 ## Deployment
 
 1. Create a new Heroku project

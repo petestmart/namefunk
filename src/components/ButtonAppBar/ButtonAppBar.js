@@ -25,6 +25,7 @@ const useStyles = makeStyles(theme => ({
     },
     title: {
         flexGrow: 1,
+        fontSize: 24,
     },
 }));
 
@@ -36,8 +37,8 @@ function ButtonAppBar(props) {
             <AppBar position="static">
                 <Toolbar>
                         <TemporaryDrawer />
-                    <Typography variant="h6" className={classes.title}>
-                            <h1>Welcome, {props.user.username}!</h1>
+                    <Typography variant="h1" className={classes.title}>
+                            Welcome, {props.user.username}!
           </Typography>
                     <Button color="inherit">Login</Button>
                 </Toolbar>
