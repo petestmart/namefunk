@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './UserProjects.css';
 
 
 class UserProjects extends Component {
@@ -11,7 +12,13 @@ class UserProjects extends Component {
             console.log('projectReducer:', this.props.reduxState.projectReducer)
             userProjects = this.props.reduxState.projectReducer.map((project) => {
                 return (
-                    <li>{project.project_name}</li>
+                    <tr className="projectRow">
+                    
+                        <td className="projectName">{project.project_name}</td>
+                        <td><button>Get More Names</button> </td>
+                        <td><button>View / Edit Project</button></td>
+                        <td>delete icon will go here</td>
+                    </tr>
                 )
             })
         }
@@ -19,9 +26,17 @@ class UserProjects extends Component {
         return (
             <div>
                 <h2>User Projects Go Here</h2>
-                <ul>
-                    {userProjects}
-                </ul>
+                <table>
+                    <thead>
+                        <th>Project:</th>
+                        <th></th>
+                        <th></th>
+
+                    </thead>
+                    <tbody>
+                        {userProjects}
+                    </tbody>
+                </table>
             </div>
 
         )
@@ -30,7 +45,6 @@ class UserProjects extends Component {
 
 const mapStateToProps = (reduxState) => {
     return {
-        // keywordState: reduxState.newNamesReducer
         reduxState
     }
 }
