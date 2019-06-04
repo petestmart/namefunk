@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
-// const userStrategy = require('../strategies/user.strategy');
 const pool = require('../modules/pool');
 require('dotenv').config();
 

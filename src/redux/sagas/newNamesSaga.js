@@ -14,7 +14,7 @@ function* getKeyword(action) {
         console.log('getKeyword Response:', keywordResponse.data);
         yield put({ type: 'SET_KEYWORD', payload: keywordResponse.data })
     } catch (error) {
-        console.log('error in getKeyword Saga', error)
+        console.log('error in getKeyword Saga', error);
     }
 } // end getKeyword Saga
 
@@ -25,13 +25,20 @@ function* getFunction(action) {
         console.log('getKeyword Response:', keywordResponse.data);
         yield put({ type: 'SET_FUNCTION', payload: keywordResponse.data })
     } catch (error) {
-        console.log('error in getKeyword Saga', error)
+        console.log('error in getKeyword Saga', error);
     }
 } // end getKeyword Saga
 
+// Retrieve User Projects From The Server (& Database)
 function* getProject(action) {
-    
-}
+    try {
+        const projectResponse = yield axios.get(`/api/project`)
+        console.log('getProject Response:', projectResponse.data);
+        yield put({ type: 'SET_PROJECTS', payload: projectResponse.data })
+    } catch (error) {
+        console.log('error in getProject Saga', error);
+    }
+} // end getProject Saga
 
 // Post Function Name That User Would Like To Save
 function* postName(action) {
@@ -52,6 +59,7 @@ function* postProject(action) {
         const projectResponse = yield axios.post(`/api/project`, {project_name: action.payload});
         console.log('action.payload', action.payload);
         console.log('postProject Response:', projectResponse.data);
+        yield put({ type: 'FETCH_PROJECT', payload: projectResponse.data })
     } catch (error) {
         console.log('error in postProject', error)
     } // end postProject Saga
@@ -62,6 +70,7 @@ function* newNamesSaga() {
     yield takeLatest('SEARCH_KEYWORD', getKeywordPostProject)
     yield takeLatest('SEARCH_FUNCTION', getFunction)
     yield takeLatest('SAVE_NAME', postName)
+    yield takeLatest('FETCH_PROJECT', getProject)
 } // end Watcher Saga newNamesSaga
 
 
