@@ -10,31 +10,32 @@ import swal from 'sweetalert';
 
 class UserProjects extends Component {
 
-    // removeAlert() {
-    //     console.log('Remove Alert');
-    //     swal({
-    //         title: "Are you sure?",
-    //         text: "Once deleted, you will not be able to recover this imaginary file!",
-    //         icon: "warning",
-    //         buttons: true,
-    //         dangerMode: true,
-    //     })
-    //     .then((willDelete) => {
-    //     if (willDelete) {
-    //         swal("Poof! Your imaginary file has been deleted!", {
-    //             icon: "success",
-
-    //         });
-    //     } else {
-    //         swal("Your imaginary file is safe!");
-    //     }
-    //     });
-    // }
+    removeAlert(id) {
+        console.log('Remove Alert');
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this project file!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+        if (willDelete) {
+            { this.removeProject(id) };
+            swal("Poof! Your project file has been deleted!", {
+                icon: "success",
+                
+            });
+        } else {
+            swal("Your project file is safe!");
+        }
+        });
+    }
 
     // Remove Project Row and Project From Database
     removeProject(id) {
         console.log('remove button pressed. ID:', id);
-        // this.removeAlert()
+        
         this.props.dispatch({ type: 'REMOVE_PROJECT', payload: id})
 
     }
@@ -52,7 +53,7 @@ class UserProjects extends Component {
                         <td className="projectName">{project.project_name}</td>
                         <td><button>Get More Names</button> </td>
                         <td><EditIcon /></td>
-                        <td onClick={() => this.removeProject(project.id)}><DeleteIcon /></td>
+                        <td onClick={() => this.removeAlert(project.id)}><DeleteIcon /></td>
                     </tr>
                 )
             })
