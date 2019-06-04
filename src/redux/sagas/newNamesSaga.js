@@ -40,6 +40,17 @@ function* getProject(action) {
     }
 } // end getProject Saga
 
+// Remove Project Line Item and From Database
+function* removeProject(action) {
+    console.log('removeProject Saga', action.payload);
+    try {
+        yield axios.delete(`/api/project/${action.payload}`)
+        yield put({ type: 'FETCH_PROJECT'})
+    } catch (err){
+        console.log(err);
+    }
+} // End removeProject
+
 // Post Function Name That User Would Like To Save
 function* postName(action) {
     try {
@@ -71,6 +82,7 @@ function* newNamesSaga() {
     yield takeLatest('SEARCH_FUNCTION', getFunction)
     yield takeLatest('SAVE_NAME', postName)
     yield takeLatest('FETCH_PROJECT', getProject)
+    yield takeLatest('REMOVE_PROJECT', removeProject)
 } // end Watcher Saga newNamesSaga
 
 

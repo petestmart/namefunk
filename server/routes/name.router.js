@@ -6,7 +6,7 @@ const pool = require('../modules/pool');
 require('dotenv').config();
 
 // Sends Saved Function Name To The Database
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
     const text = req.body.text;
     // const id = req.body.project_id;
     console.log('req.body.text:', req.body.text);
@@ -17,7 +17,7 @@ router.post('/', (req, res) => {
 }); // End router.post/api/name
 
 // Gets Saved Names from the Database
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
     const queryText = `SELECT`
     pool.query(queryText)
         .then(response => {

@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const axios = require('axios');
+// const axios = require('axios');
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
 require('dotenv').config();
 
 
 // GET All Projects from the DB Associated with Current User
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
     console.log('req.user.id:', req.user.id);
     const user_id = req.user.id;    
     const queryText = `SELECT * FROM "project" WHERE "user_id"=$1;`;
@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
 }); // End router.get/api/project
 
 // Sends Project Name To DB.  Associates User with Project
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
     console.log('req.body.project_name', req.body.project_name);
     console.log('req.user.id:', req.user.id);
     const project_name = req.body.project_name;
@@ -34,5 +34,14 @@ router.post('/', (req, res) => {
         .then(() => res.sendStatus(201))
         .catch(() => res.sendStatus(500));
 }); // End router.post/api/project
+
+router.delete('/:id', (req, res) => {
+    const queryText = 'DELETE FROM "project" WHERE "id"=$1';
+    pool.query(queryText, [req.params.id])
+    .then(() => {res.sendStatus(200);})
+    .catch((err) => {
+        console.log('Error completing DELETE project', err);
+    });
+});
 
 module.exports = router;
