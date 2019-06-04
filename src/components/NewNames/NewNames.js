@@ -10,6 +10,11 @@ class NewNames extends Component {
     state = {
         keyword: '',
         syns_id: 0,
+        
+    }
+
+    componentDidMount() {
+        this.loadCurrentProject();
     }
 
     handleChange = (event) => {
@@ -62,6 +67,15 @@ class NewNames extends Component {
         event.preventDefault();
         this.props.dispatch({ type: 'SEARCH_FUNCTION', payload: "change" })
     } // End function handlePutClick
+
+    loadCurrentProject = () => {
+        if (this.props.reduxState.projectReducer.length > 0) {
+        console.log('projectReducer.project_id', this.props.reduxState.projectReducer[9])
+            this.setState({
+                project_id: this.props.reduxState.projectReducer[9],
+            })
+        }
+    }
 
     // Moves To Next Suggestion - Carousel - Increments Array Index by 1
     nextSuggestion = () => {
@@ -138,7 +152,7 @@ class NewNames extends Component {
                     <button onClick={this.handlePutClick}> PUT </button>
                     <button onClick={this.handleDeleteClick}>DELETE</button>
                     <br /><br />
-                    <div id="displayProjectName">Your Function Name Related To <b>{this.state.keyword}</b>:</div><br />
+                    <div id="displayProjectName">Your Function Name Related To <b>{this.state.keyword}</b> {this.state.project_id}:</div><br />
 
                     <span className="currentSuggestion">{currentFunction}{currentKeyword}</span>
 
@@ -146,7 +160,7 @@ class NewNames extends Component {
                     <button onClick={() => this.previousSuggestion()}>Previous</button>
                     <button onClick={() => this.nextSuggestion()}>Next</button>
                     <button onClick={() => this.saveName()}>Save</button><br />
-                    {/* <pre>{JSON.stringify(this.props.reduxState.newNamesReducer)}</pre> */}
+                    <pre>{JSON.stringify(this.props.reduxState.projectReducer)}</pre>
                 </form>
                 <SavedNames />
                 <UserProjects />

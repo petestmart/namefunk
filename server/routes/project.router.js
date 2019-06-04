@@ -10,7 +10,7 @@ require('dotenv').config();
 router.get('/', rejectUnauthenticated, (req, res) => {
     console.log('req.user.id:', req.user.id);
     const user_id = req.user.id;    
-    const queryText = `SELECT * FROM "project" WHERE "user_id"=$1;`;
+    const queryText = `SELECT * FROM "project" JOIN "words" ON "words"."project_id" = "project"."id" WHERE "user_id"=$1;`;
     pool.query(queryText, [user_id])
         .then((result) => {
             console.log('Get Projects', result.rows);

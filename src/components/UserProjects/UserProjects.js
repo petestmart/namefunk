@@ -61,7 +61,7 @@ class UserProjects extends Component {
 
         return (
             <div>
-                <h2>User Projects Go Here</h2>
+                <h2>Projects</h2>
                 <table>
                     <tbody>
                         <tr>
