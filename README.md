@@ -16,7 +16,7 @@ Before you get started, make sure you have the following software installed on y
 
 ## Create database and table
 
-Create a new database called `namefunk` and create tables in using the SQL commands located in the database.sql file
+Create a new database called `namefunk` and create tables using the SQL commands located in the database.sql file
 
 
 If you would like to name your database something else, you will need to change `namefunk` to the name of your new database name in `server/modules/pool.js`
