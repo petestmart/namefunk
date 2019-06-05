@@ -11,7 +11,10 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
+// import LogoutIcon from '@material-ui/core/LogoutIcon';
 // import logo from '../App/logo.svg';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 
 const useStyles = makeStyles({
@@ -21,10 +24,11 @@ const useStyles = makeStyles({
 
     fullList: {
         width: 'auto',
+
     },
 });
 
-function TemporaryDrawer() {
+function TemporaryDrawer(props) {
     const classes = useStyles();
     const [state, setState] = React.useState({
         left: false,
@@ -48,9 +52,10 @@ function TemporaryDrawer() {
             <List>
                 {['NameFunk'].map((text, index) => (
                     <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ?
-                            <MenuIcon /> : <MenuIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
+                        <ListItemIcon>
+                            <MenuIcon />
+                        </ListItemIcon>
+                        <ListItemText primary={text} />
                     </ListItem>
                 ))}
             </List>
@@ -58,19 +63,52 @@ function TemporaryDrawer() {
             <Divider />
 
             <List>
-                {['Get More Names', 'View / Edit Project', 'My Projects', 'New Project'].map((text, index) => (
+                {[
+                    <Link to="/home">
+                        {props.user.id ? 'Get More Names' : 'Login / Register'}
+                    </Link>,
+                    <Link to="/names">
+                        {props.user.id ? 'Saved Names' : ''}
+                    </Link>
+                    ,
+                    <Link to="/project">
+                        { props.user.id ? 'My Projects' : '' }
+                    </Link>,
+                    <Link to="/new">
+                        { props.user.id ? 'New Project' : ''}
+                    </Link>
+                ,
+                    // {props.user.id && (
+                    //         <>
+                    <Link className="nav-link" to="/info">
+                        Info Page
+                    </Link>
+                    // </>
+                    // )}
+                ].map((text, index) => (
                     <ListItem button key={text}>
-                        <ListItemIcon>{index % 2 === 0 ?
-                            <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                        <ListItemText primary={text} />
-                    </ListItem>
+                    <ListItemIcon>{index % 2 === 0 ?
+                        <i class="material-icons">
+                            folder
+                            </i> :
+                        <MailIcon />
+                    }
+                    </ListItemIcon>
+                    <ListItemText primary={text} />
+                </ListItem>
                 ))}
             </List>
             <Divider />
             <List>
                 {['Logout'].map((text, index) => (
                     <ListItem button key={text}>
-                        <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                        <ListItemIcon>{index % 2 === 0 ?
+                            <i class="material-icons">
+                                check_box_outline_blank
+                            </i> :
+                            <i class="material-icons">
+                                account_circle
+                            </i>}</ListItemIcon>
                         <ListItemText primary={text} />
                     </ListItem>
                 ))}
@@ -89,4 +127,8 @@ function TemporaryDrawer() {
     );
 }
 
-export default TemporaryDrawer;
+const mapStateToProps = state => ({
+    user: state.user,
+});
+
+export default connect(mapStateToProps)(TemporaryDrawer);
