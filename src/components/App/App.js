@@ -9,15 +9,19 @@ import logo from './logo.svg';
 import { connect } from 'react-redux';
 
 // import Nav from '../Nav/Nav';
+// import TemporaryDrawer from '../TemporaryDrawer/TemporaryDrawer';
 import ButtonAppBar from '../ButtonAppBar/ButtonAppBar';
 // import TemporaryDrawer from '../TemporaryDrawer/TemporaryDrawer';
 import Footer from '../Footer/Footer';
 
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
+import SavedNames from '../SavedNames/SavedNames';
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
+import UserProjects from '../UserProjects/UserProjects';
+import NewNames from '../NewNames/NewNames';
 
 import './App.css';
 
@@ -55,8 +59,23 @@ class App extends Component {
             Even though it seems like they are different pages, the user is always on localhost:3000/home */}
             <ProtectedRoute
               exact
+              path="/names"
+              component={SavedNames}
+            />
+            <ProtectedRoute
+              exact
               path="/home"
               component={UserPage}
+            />
+            <ProtectedRoute
+              exact
+              path="/project"
+              component={UserProjects}
+            />
+            <ProtectedRoute
+              exact
+              path="/new"
+              component={NewNames}
             />
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}
