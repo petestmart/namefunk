@@ -3,7 +3,7 @@
 
 // }
 
-const projectReducer = (state = [], action) => {
+const currentProjectReducer = (state = [], action) => {
     if (action.type === 'SET_CURRENT_PROJECT') {
         return action.payload
     }
@@ -13,4 +13,4 @@ const projectReducer = (state = [], action) => {
 
 
 
-export default projectReducer;
+export default currentProjectReducer;

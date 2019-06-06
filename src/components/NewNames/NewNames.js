@@ -79,6 +79,12 @@ class NewNames extends Component {
     //     }
     // }
 
+    // loadProject(id) {
+    //     console.log('Load Project Clicked', id);
+    //     // "/project/${id}"
+    //     this.props.history.push(`/new/${id}`)
+    // }
+
     // Moves To Next Suggestion - Carousel - Increments Array Index by 1
     nextSuggestion = () => {
         // console.log('eachKeyword:', eachKeyword);

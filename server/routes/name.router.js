@@ -20,8 +20,9 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
 // Gets Saved Names from the Database
 router.get('/', rejectUnauthenticated, (req, res) => {
-    const queryText = `SELECT`
-    pool.query(queryText)
+    console.log('req.body.project_id:', req.body.project_id)
+    const queryText = `SELECT * FROM "words" WHERE "project_id"=$1;`
+    pool.query(queryText, [req.body.project_id])
         .then(response => {
             console.log('get saved names response:', response.data)
             res.send(reponse.data)

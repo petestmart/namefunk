@@ -40,7 +40,16 @@ function* getProject(action) {
     }
 } // end getProject Saga
 
-
+function* getSavedNames(action) {
+    console.log('getSavedNames');
+    try {
+        const savedNamesResponse = yield axios.get(`/api/name`)
+        console.log('getSavedNames Response:', savedNamesResponse.data);
+        yield put({ type: 'SET_CURRENT_PROJECT', payload: savedNamesResponse.data})
+    } catch (error) {
+        console.log('error in getSavedNames:', error)
+    }
+} // end getSavedNames Saga
 
 // Remove Project Line Item and From Database
 function* removeProject(action) {
@@ -59,7 +68,7 @@ function* postName(action) {
         const nameResponse = yield axios.post(`/api/name`, action.payload);
         console.log('action.payload', action.payload);
         console.log('postName Response:', nameResponse.data);
-        yield put({ type: 'FETCH_NAMES', payload: nameResponse.data })
+        yield put({ type: 'FETCH_NAMES'})
     } catch (error) {
         console.log('error in postName', error)
     }

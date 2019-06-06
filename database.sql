@@ -20,5 +20,5 @@ CREATE TABLE "words"
 (
     "id" SERIAL PRIMARY KEY,
     "text" VARCHAR (255),
-    "project_id" VARCHAR (255) REFERENCES "project"
+    "project_id" INT REFERENCES "project" ON DELETE CASCADE
 );
