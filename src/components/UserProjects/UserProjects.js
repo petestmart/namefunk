@@ -12,6 +12,7 @@ class UserProjects extends Component {
 
     loadProject(id) {
         console.log('Load Project Clicked', id);
+        // "/project/${id}"
     }
 
     removeAlert(id) {
@@ -54,7 +55,7 @@ class UserProjects extends Component {
                 return (
                     <tr key={i} className="projectRow">
                         <td className="projectName">{project.project_name}</td>
-                        <td onClick={() => this.loadProject(project.id)}><button>Get More Names</button> </td>
+                        <td onClick={() => this.loadProject(project.id)}><button link to="`/project/?id={project.id}`">Get More Names</button> </td>
                         <td><EditIcon /></td>
                         <td onClick={() => this.removeAlert(project.id)}><DeleteIcon /></td>
                     </tr>

@@ -9,9 +9,13 @@ require('dotenv').config();
 // GET All Projects from the DB Associated with Current User
 router.get('/', rejectUnauthenticated, (req, res) => {
     console.log('req.user.id:', req.user.id);
-    const user_id = req.user.id;    
-    const queryText = `SELECT "project"."id", "project"."user_id", "project"."project_name", "words"."text" FROM "project" 
-        FULL JOIN "words" ON "words"."project_id" = "project"."id" WHERE "user_id"=$1;`;
+    const user_id = req.user.id;
+    const queryText = `SELECT "project"."id", "project"."user_id", "project"."project_name" 
+        FROM "project" FULL JOIN "words" ON "words"."project_id" = "project"."id" 
+        WHERE "user_id"=$1 
+        GROUP BY "project"."id"
+        ORDER BY "project"."id" DESC
+        ;`;
     pool.query(queryText, [user_id])
         .then((result) => {
             console.log('Get Projects', result.rows);
@@ -29,7 +33,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     console.log('req.user.id:', req.user.id);
     const project_name = req.body.project_name;
     const user_id = req.user.id;
-    
+
     const queryText = `INSERT INTO "project" ("user_id", "project_name") VALUES ($1, $2);`;
     pool.query(queryText, [user_id, project_name])
         .then(() => res.sendStatus(201))
@@ -40,10 +44,10 @@ router.delete('/:id', (req, res) => {
     console.log('req.params.id:', req.params.id);
     const queryText = 'DELETE FROM "project" WHERE "id"=$1;';
     pool.query(queryText, [req.params.id])
-    .then(() => {res.sendStatus(200);})
-    .catch((err) => {
-        console.log('Error completing DELETE project', err);
-    });
+        .then(() => { res.sendStatus(200); })
+        .catch((err) => {
+            console.log('Error completing DELETE project', err);
+        });
 });
 
 module.exports = router;
