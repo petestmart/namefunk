@@ -40,6 +40,8 @@ function* getProject(action) {
     }
 } // end getProject Saga
 
+
+
 // Remove Project Line Item and From Database
 function* removeProject(action) {
     console.log('removeProject Saga', action.payload);
@@ -57,7 +59,7 @@ function* postName(action) {
         const nameResponse = yield axios.post(`/api/name`, action.payload);
         console.log('action.payload', action.payload);
         console.log('postName Response:', nameResponse.data);
-        yield put({ type: 'FETCH_PROJECT', payload: nameResponse.data })
+        yield put({ type: 'FETCH_NAMES', payload: nameResponse.data })
     } catch (error) {
         console.log('error in postName', error)
     }
@@ -83,6 +85,7 @@ function* newNamesSaga() {
     yield takeLatest('SAVE_NAME', postName)
     yield takeLatest('FETCH_PROJECT', getProject)
     yield takeLatest('REMOVE_PROJECT', removeProject)
+    yield takeLatest('FETCH_NAMES', getSavedNames)
 } // end Watcher Saga newNamesSaga
 
 
