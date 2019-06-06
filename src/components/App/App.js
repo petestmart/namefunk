@@ -4,6 +4,7 @@ import {
   Route,
   Redirect,
   Switch,
+  withRouter,
 } from 'react-router-dom';
 import logo from './logo.svg';
 import { connect } from 'react-redux';
