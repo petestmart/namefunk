@@ -10,6 +10,10 @@ import swal from 'sweetalert';
 
 class UserProjects extends Component {
 
+    loadProject(id) {
+        console.log('Load Project Clicked', id);
+    }
+
     removeAlert(id) {
         console.log('Remove Alert');
         swal({
@@ -49,9 +53,8 @@ class UserProjects extends Component {
             userProjects = this.props.reduxState.projectReducer.map((project, i) => {
                 return (
                     <tr key={i} className="projectRow">
-
                         <td className="projectName">{project.project_name}</td>
-                        <td><button>Get More Names</button> </td>
+                        <td onClick={() => this.loadProject(project.id)}><button>Get More Names</button> </td>
                         <td><EditIcon /></td>
                         <td onClick={() => this.removeAlert(project.id)}><DeleteIcon /></td>
                     </tr>

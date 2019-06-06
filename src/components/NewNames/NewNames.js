@@ -14,7 +14,7 @@ class NewNames extends Component {
     }
 
     componentDidMount() {
-        this.loadCurrentProject();
+        // this.loadCurrentProject();
     }
 
     handleChange = (event) => {
@@ -68,14 +68,14 @@ class NewNames extends Component {
         this.props.dispatch({ type: 'SEARCH_FUNCTION', payload: "change" })
     } // End function handlePutClick
 
-    loadCurrentProject = () => {
-        if (this.props.reduxState.projectReducer.length > 0) {
-        console.log('projectReducer.project_id', this.props.reduxState.projectReducer[9])
-            this.setState({
-                project_id: this.props.reduxState.projectReducer[9],
-            })
-        }
-    }
+    // loadCurrentProject = () => {
+    //     if (this.props.reduxState.projectReducer.length > 0) {
+    //     console.log('projectReducer.project_id', this.props.reduxState.projectReducer.project_id)
+    //         this.setState({
+    //             project_id: this.props.reduxState.projectReducer[9],
+    //         })
+    //     }
+    // }
 
     // Moves To Next Suggestion - Carousel - Increments Array Index by 1
     nextSuggestion = () => {

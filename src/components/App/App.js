@@ -69,7 +69,7 @@ class App extends Component {
             />
             <ProtectedRoute
               exact
-              path="/project"
+              path="/project/:id"
               component={UserProjects}
             />
             <ProtectedRoute

@@ -6,7 +6,7 @@
 
 const projectReducer = (state = [], action) => {
     if (action.type === 'SET_PROJECTS'){
-        return [...state, action.payload]
+        return action.payload
     }
 
     return state;

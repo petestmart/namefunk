@@ -10,7 +10,8 @@ require('dotenv').config();
 router.get('/', rejectUnauthenticated, (req, res) => {
     console.log('req.user.id:', req.user.id);
     const user_id = req.user.id;    
-    const queryText = `SELECT * FROM "project" JOIN "words" ON "words"."project_id" = "project"."id" WHERE "user_id"=$1;`;
+    const queryText = `SELECT "project"."id", "project"."user_id", "project"."project_name", "words"."text" FROM "project" 
+        FULL JOIN "words" ON "words"."project_id" = "project"."id" WHERE "user_id"=$1;`;
     pool.query(queryText, [user_id])
         .then((result) => {
             console.log('Get Projects', result.rows);
@@ -36,7 +37,8 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 }); // End router.post/api/project
 
 router.delete('/:id', (req, res) => {
-    const queryText = 'DELETE FROM "project" WHERE "id"=$1';
+    console.log('req.params.id:', req.params.id);
+    const queryText = 'DELETE FROM "project" WHERE "id"=$1;';
     pool.query(queryText, [req.params.id])
     .then(() => {res.sendStatus(200);})
     .catch((err) => {
