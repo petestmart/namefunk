@@ -70,12 +70,12 @@ class App extends Component {
             />
             <ProtectedRoute
               exact
-              path="/project/:id"
+              path="/project"
               component={UserProjects}
             />
             <ProtectedRoute
               exact
-              path="/new"
+              path="/new/:id"
               component={NewNames}
             />
             {/* This works the same as the other protected route, except that if the user is logged in,

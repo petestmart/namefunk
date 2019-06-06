@@ -1,5 +1,6 @@
 
 const newNamesReducer = (state = [], action) => {
+    console.log('newNamesReducer', action.payload);
     if (action.type === 'SET_KEYWORD') {
         return action.payload
     }

@@ -10,10 +10,16 @@ import {withRouter, Link} from 'react-router-dom';
 
 class UserProjects extends Component {
 
+    state = {
+        keyword: '',
+        syns_id: 0,
+
+    }
+    
     loadProject(id) {
         console.log('Load Project Clicked', id);
         // "/project/${id}"
-        this.props.history.push(`/project/${id}`)
+        this.props.history.push(`/new/${id}`)
     }
 
     removeAlert(id) {

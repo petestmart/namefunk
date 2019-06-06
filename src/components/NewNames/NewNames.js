@@ -38,7 +38,9 @@ class NewNames extends Component {
         //     swal("Sorry, Friend", "That keyword has no results.")
         // }
         else {
-            this.props.dispatch({ type: 'SEARCH_KEYWORD', payload: this.state.keyword })
+            this.props.dispatch({ 
+                type: 'SEARCH_KEYWORD', 
+                payload: this.state.keyword })
         }
 
     } // End function handleClick
@@ -118,9 +120,9 @@ class NewNames extends Component {
     saveName = (string) => {
         let funkName = this.props.reduxState.functionReducer[0].meta.syns[0][this.state.syns_id];
         let newName = this.props.reduxState.newNamesReducer[0].meta.syns[0][this.state.syns_id];
-        let text = funkName + (newName.toUpperCase() + string.slice(1));
+        let text = funkName + newName;
         console.log('saveName pressed', funkName + newName);
-        this.props.dispatch({ type: 'SAVE_NAME', payload: text })
+        this.props.dispatch({ type: 'SAVE_NAME', payload: {text: text, project_id: this.props.match.params.id }})
 
     } // End function saveName
 

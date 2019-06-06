@@ -54,10 +54,10 @@ function* removeProject(action) {
 // Post Function Name That User Would Like To Save
 function* postName(action) {
     try {
-        const nameResponse = yield axios.post(`/api/name`, {text: action.payload});
+        const nameResponse = yield axios.post(`/api/name`, action.payload);
         console.log('action.payload', action.payload);
         console.log('postName Response:', nameResponse.data);
-        yield put({ type: 'SET_KEYWORD', payload: nameResponse.data })
+        yield put({ type: 'FETCH_PROJECT', payload: nameResponse.data })
     } catch (error) {
         console.log('error in postName', error)
     }
