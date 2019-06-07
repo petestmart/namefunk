@@ -65,8 +65,8 @@ class UserProjects extends Component {
                         <td className="projectName">{project.project_name}</td>
                         <td 
                         onClick={() => this.loadProject(project.id)}
-                        ><button>Get More Names</button></td>
-                        <td><EditIcon /></td>
+                        ><EditIcon /></td>
+                        <td></td>
                         <td onClick={() => this.removeAlert(project.id)}><DeleteIcon /></td>
                     </tr>
                 )
