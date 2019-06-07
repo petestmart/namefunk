@@ -19,7 +19,8 @@ class UserProjects extends Component {
     loadProject(id) {
         console.log('Load Project Clicked', id);
         // "/project/${id}"
-        this.props.history.push(`/new/${id}`)
+        this.props.history.push(`/new/${id}`);
+        this.props.dispatch({ type: 'FETCH_NAMES', project_id: id });
     }
 
     removeAlert(id) {
