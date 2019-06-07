@@ -62,7 +62,7 @@ function* getProject(action) {
 function* getSavedNames(action) {
     console.log('getSavedNames action.project_id', action.project_id);
     try {
-        const currentProjResponse = yield axios.get(`/api/name`, {project_id: action.project_id})
+        const currentProjResponse = yield axios.get(`/api/name/${action.project_id}`, {project_id: action.project_id})
         console.log('getSavedNames Response', currentProjResponse.data);
         yield put({ type: 'SET_CURRENT_PROJECT', payload: currentProjResponse.data})
     } catch (error) {

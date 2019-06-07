@@ -12,7 +12,7 @@ class NewNames extends Component {
     state = {
         keyword: '',
         syns_id: 0,
-        project_id: 133,
+        project_id: 0,
     }
 
     componentDidMount() {

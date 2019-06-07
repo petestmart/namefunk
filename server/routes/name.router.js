@@ -10,8 +10,8 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     const text = req.body.text;
     const project_id = req.body.project_id;
     console.log('router.post req.body', req.body);
-    console.log('req.body.project_id:', req.body.project_id);
-    console.log('req.body.text:', req.body.text);
+    console.log('router.post req.body.project_id:', req.body.project_id);
+    console.log('router.post req.body.text:', req.body.text);
     const queryText = `INSERT INTO "words" (text, project_id) VALUES ($1, $2);`;
     pool.query(queryText, [text, project_id])
         .then(() => res.sendStatus(201))
@@ -31,12 +31,13 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 //         });
 // }); // End router.get/api/name
 
-router.get('/', rejectUnauthenticated, (req, res) => {
+router.get('/:id', rejectUnauthenticated, (req, res) => {
     console.log('name router.get req.user.id', req.user.id);
-    const user_id = req.user.id;
-    // const project_id = req.body.project_id;
-    const queryText = `SELECT * FROM "words" JOIN "project" ON "project"."id" = "words"."project_id" WHERE "user_id"=$1;`;
-    pool.query(queryText, [user_id])
+    console.log('name router.get req.params.id', req.params.id);
+    // const user_id = req.user.id;
+    const project_id = rreq.params.id;
+    const queryText = `SELECT * FROM "words" JOIN "project" ON "project"."id" = "words"."project_id" WHERE "project_id"=$1;`;
+    pool.query(queryText, [project_id])
     .then((result) => {
         console.log('Get Saved Names for Current Proj', result.rows);
         res.send(result.rows);
