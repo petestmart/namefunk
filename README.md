@@ -91,6 +91,7 @@ This code is also heavily commented. We recommend reading through the comments, 
 * Axios
 * Material UI
 * SweetAlert
+* API from Merriam-Webster (for finding similar words)
 
 ## Deployment
 
