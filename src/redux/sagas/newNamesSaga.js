@@ -40,16 +40,28 @@ function* getProject(action) {
     }
 } // end getProject Saga
 
+// Retrieve Project-Specific Saved Names
+// function* getSavedNames(action) {
+//     console.log('getSavedNames', action.project_id);
+//     try {
+//         const savedNamesResponse = yield axios.get(`/api/name`, action.project_id)
+//         console.log('getSavedNames Response:', savedNamesResponse.rows);
+//         yield put({ type: 'SET_CURRENT_PROJECT', payload: savedNamesResponse.rows})
+//     } catch (error) {
+//         console.log('error in getSavedNames:', error)
+//     }
+// } // end getSavedNames Saga
+
+// Retrieve Project-Specific Saved Names
 function* getSavedNames(action) {
-    console.log('getSavedNames');
     try {
-        const savedNamesResponse = yield axios.get(`/api/name`)
-        console.log('getSavedNames Response:', savedNamesResponse.data);
-        yield put({ type: 'SET_CURRENT_PROJECT', payload: savedNamesResponse.data})
+        const currentProjResponse = yield axios.get(`/api/name`)
+        console.log('getSavedNames Response', currentProjResponse.data);
+        yield put({ type: 'SET_CURRENT_PROJECT', payload: currentProjResponse.data})
     } catch (error) {
-        console.log('error in getSavedNames:', error)
+        console.log('error in getSavedNames', error);
     }
-} // end getSavedNames Saga
+}
 
 // Remove Project Line Item and From Database
 function* removeProject(action) {
@@ -68,7 +80,7 @@ function* postName(action) {
         const nameResponse = yield axios.post(`/api/name`, action.payload);
         console.log('action.payload', action.payload);
         console.log('postName Response:', nameResponse.data);
-        yield put({ type: 'FETCH_NAMES'})
+        yield put({ type: 'FETCH_NAMES', project_id: action.payload.project_id})
     } catch (error) {
         console.log('error in postName', error)
     }

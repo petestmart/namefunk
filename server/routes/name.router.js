@@ -9,7 +9,7 @@ require('dotenv').config();
 router.post('/', rejectUnauthenticated, (req, res) => {
     const text = req.body.text;
     const project_id = req.body.project_id;
-    console.log('req.body', req.body);
+    console.log('router.post req.body', req.body);
     console.log('req.body.project_id:', req.body.project_id);
     console.log('req.body.text:', req.body.text);
     const queryText = `INSERT INTO "words" (text, project_id) VALUES ($1, $2);`;
@@ -19,16 +19,31 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 }); // End router.post/api/name
 
 // Gets Saved Names from the Database
+// router.get('/', rejectUnauthenticated, (req, res) => {
+//     console.log('In name.router.get. req.body.project_id:', req.body);
+//     const queryText = `SELECT * FROM "words" WHERE "project_id"=$1;`
+//     pool.query(queryText, [req.body])
+//         .then(response => {
+//             console.log('get saved names response:', response.data)
+//             res.send(reponse.data)
+//         }).catch(err => {
+//             res.sendStatus(500)
+//         });
+// }); // End router.get/api/name
+
 router.get('/', rejectUnauthenticated, (req, res) => {
-    console.log('req.body.project_id:', req.body.project_id)
-    const queryText = `SELECT * FROM "words" WHERE "project_id"=$1;`
-    pool.query(queryText, [req.body.project_id])
-        .then(response => {
-            console.log('get saved names response:', response.data)
-            res.send(reponse.data)
-        }).catch(err => {
-            res.sendStatus(500)
-        });
-}); // End router.get/api/name
+    console.log('name router.get ');
+    // const project_id = req.body.project_id;
+    const queryText = `SELECT * FROM "words" WHERE "project_id"=132;`;
+    pool.query(queryText)
+    .then((result) => {
+        console.log('Get Saved Names for Current Proj', result.rows);
+        res.send(result.rows);
+    })
+    .catch((error) => {
+        console.log(`Error making database query ${queryText}`, error);
+        res.sendStatus(500);
+    })
+});
 
 module.exports = router;

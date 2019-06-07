@@ -8,7 +8,7 @@ require('dotenv').config();
 
 // GET All Projects from the DB Associated with Current User
 router.get('/', rejectUnauthenticated, (req, res) => {
-    console.log('req.user.id:', req.user.id);
+    console.log('proj router.get req.user.id:', req.user.id);
     const user_id = req.user.id;
     const queryText = `SELECT "project"."id", "project"."user_id", "project"."project_name" 
         FROM "project" FULL JOIN "words" ON "words"."project_id" = "project"."id" 
