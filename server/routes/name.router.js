@@ -32,10 +32,11 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 // }); // End router.get/api/name
 
 router.get('/', rejectUnauthenticated, (req, res) => {
-    console.log('name router.get ');
+    console.log('name router.get req.user.id', req.user.id);
+    const user_id = req.user.id;
     // const project_id = req.body.project_id;
-    const queryText = `SELECT * FROM "words" WHERE "project_id"=132;`;
-    pool.query(queryText)
+    const queryText = `SELECT * FROM "words" JOIN "project" ON "project"."id" = "words"."project_id" WHERE "user_id"=$1;`;
+    pool.query(queryText, [user_id])
     .then((result) => {
         console.log('Get Saved Names for Current Proj', result.rows);
         res.send(result.rows);

@@ -7,6 +7,12 @@ function* getKeywordPostProject(action) {
     yield postProject(action);
 } // end getKeywordPostProject Saga
 
+// Call both getProject & getSavedNames
+function* fetchProjectsFetchNames(action) {
+    yield getProject(action);
+    yield getSavedNames(action);
+}
+
 // Send keyword to thesaurus.router
 function* getKeyword(action) {
     try {
@@ -54,8 +60,9 @@ function* getProject(action) {
 
 // Retrieve Project-Specific Saved Names
 function* getSavedNames(action) {
+    console.log('getSavedNames action.project_id', action.project_id);
     try {
-        const currentProjResponse = yield axios.get(`/api/name`)
+        const currentProjResponse = yield axios.get(`/api/name`, {project_id: action.project_id})
         console.log('getSavedNames Response', currentProjResponse.data);
         yield put({ type: 'SET_CURRENT_PROJECT', payload: currentProjResponse.data})
     } catch (error) {
@@ -104,7 +111,7 @@ function* newNamesSaga() {
     yield takeLatest('SEARCH_KEYWORD', getKeywordPostProject)
     yield takeLatest('SEARCH_FUNCTION', getFunction)
     yield takeLatest('SAVE_NAME', postName)
-    yield takeLatest('FETCH_PROJECT', getProject)
+    yield takeLatest('FETCH_PROJECT', fetchProjectsFetchNames)
     yield takeLatest('REMOVE_PROJECT', removeProject)
     yield takeLatest('FETCH_NAMES', getSavedNames)
 } // end Watcher Saga newNamesSaga

@@ -1,20 +1,23 @@
 import React, { Component } from 'react';
-import SavedNames from '../SavedNames/SavedNames';
+// import SavedNames from '../SavedNames/SavedNames';
 import { connect } from 'react-redux';
 import './NewNames.css'
 import swal from 'sweetalert';
 import UserProjects from '../UserProjects/UserProjects';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 
 class NewNames extends Component {
 
     state = {
         keyword: '',
         syns_id: 0,
-        
+        project_id: 133,
     }
 
     componentDidMount() {
         // this.loadCurrentProject();
+
     }
 
     handleChange = (event) => {
@@ -38,9 +41,10 @@ class NewNames extends Component {
         //     swal("Sorry, Friend", "That keyword has no results.")
         // }
         else {
-            this.props.dispatch({ 
-                type: 'SEARCH_KEYWORD', 
-                payload: this.state.keyword })
+            this.props.dispatch({
+                type: 'SEARCH_KEYWORD',
+                payload: this.state.keyword
+            })
         }
 
     } // End function handleClick
@@ -128,14 +132,21 @@ class NewNames extends Component {
         let newName = this.props.reduxState.newNamesReducer[0].meta.syns[0][this.state.syns_id];
         let text = funkName + newName;
         console.log('saveName pressed', funkName + newName);
-        this.props.dispatch({ type: 'SAVE_NAME', payload: {text: text, project_id: this.props.match.params.id }})
-
+        this.props.dispatch({ type: 'SAVE_NAME', payload: { text: text, project_id: this.props.match.params.id } })
+        this.renderProject();
     } // End function saveName
+
+    renderProject = () => {
+        this.setState({
+            project_id: this.props.match.params.id,
+        })
+    }
 
     render() {
 
         let currentKeyword;
         let currentFunction;
+        let savedNames;
 
         // Wait until load 
         if (this.props.reduxState.newNamesReducer.length != 0) {
@@ -146,6 +157,21 @@ class NewNames extends Component {
         // Wait until load 
         if (this.props.reduxState.functionReducer.length != 0) {
             currentFunction = this.props.reduxState.functionReducer[0].meta.syns[0][this.state.syns_id]
+
+        }
+
+        if (this.props.reduxState.currentProjectReducer.length != 0) {
+            savedNames = this.props.reduxState.currentProjectReducer.map((savedName, i) => {
+                return (
+
+                    <tr key={i} className="projectRow">
+                        <td className="projectName">{savedName.text}</td>
+                        <td></td>
+                        <td><EditIcon /></td>
+                        <td onClick={() => this.removeAlert(savedName.id)}><DeleteIcon /></td>
+                    </tr>
+                )
+            })
 
         }
 
@@ -168,9 +194,20 @@ class NewNames extends Component {
                     <button onClick={() => this.previousSuggestion()}>Previous</button>
                     <button onClick={() => this.nextSuggestion()}>Next</button>
                     <button onClick={() => this.saveName()}>Save</button><br />
-                    <pre>{JSON.stringify(this.props.reduxState.projectReducer)}</pre>
+                    {/* <pre>{JSON.stringify(this.props.reduxState.projectReducer)}</pre> */}
                 </form>
-                <SavedNames />
+                <h2>Saved Names For Project: {this.state.keyword}</h2>
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>Names</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        {savedNames}
+                    </tbody>
+                </table>
                 <UserProjects />
             </div>
         )
