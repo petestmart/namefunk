@@ -43,7 +43,8 @@ class NewNames extends Component {
         else {
             this.props.dispatch({
                 type: 'SEARCH_KEYWORD',
-                payload: this.state.keyword
+                payload: this.state.keyword,
+                history: this.props.history
             })
         }
 
@@ -208,7 +209,7 @@ class NewNames extends Component {
                         {savedNames}
                     </tbody>
                 </table>
-                <UserProjects />
+                <UserProjects  />
             </div>
         )
     }

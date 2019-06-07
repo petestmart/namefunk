@@ -33,7 +33,7 @@ class App extends Component {
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_USER' });
     this.props.dispatch({ type: 'FETCH_PROJECT'});
-    this.props.dispatch({ type: 'FETCH_NAMES' });
+    // this.props.dispatch({ type: 'FETCH_NAMES' });
   }
 
   render() {

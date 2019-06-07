@@ -34,9 +34,10 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     const project_name = req.body.project_name;
     const user_id = req.user.id;
 
-    const queryText = `INSERT INTO "project" ("user_id", "project_name") VALUES ($1, $2);`;
+    const queryText = `INSERT INTO "project" ("user_id", "project_name") VALUES ($1, $2) RETURNING "id";`;
     pool.query(queryText, [user_id, project_name])
-        .then(() => res.sendStatus(201))
+        .then((result) => res.send(result.rows))
+        
         .catch(() => res.sendStatus(500));
 }); // End router.post/api/project
 
