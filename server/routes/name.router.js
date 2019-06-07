@@ -35,7 +35,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
     console.log('name router.get req.user.id', req.user.id);
     console.log('name router.get req.params.id', req.params.id);
     // const user_id = req.user.id;
-    const project_id = rreq.params.id;
+    const project_id = req.params.id;
     const queryText = `SELECT * FROM "words" JOIN "project" ON "project"."id" = "words"."project_id" WHERE "project_id"=$1;`;
     pool.query(queryText, [project_id])
     .then((result) => {
