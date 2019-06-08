@@ -60,7 +60,7 @@ class NewNames extends Component {
     // Handles GET NAME SUGGESTIONS - Not an actual GET function
     handleGetClick = (event) => {
         event.preventDefault();
-        this.props.dispatch({ type: 'SEARCH_FUNCTION', payload: "fetch" })
+        this.props.dispatch({ type: 'SEARCH_FUNCTION', payload: "get" })
     } // End function handleGetClick
 
     // Handles POST NAME SUGGESTIONS - Not a typical POST function
@@ -72,7 +72,7 @@ class NewNames extends Component {
     // Handles PUT NAME SUGGESTIONS - Not an actual PUT function
     handlePutClick = (event) => {
         event.preventDefault();
-        this.props.dispatch({ type: 'SEARCH_FUNCTION', payload: "change" })
+        this.props.dispatch({ type: 'SEARCH_FUNCTION', payload: "put" })
     } // End function handlePutClick
 
     // loadCurrentProject = () => {
@@ -129,7 +129,7 @@ class NewNames extends Component {
 
     // Sends Suggested Function name to newNamesSaga (Then to DB via name.router)
     saveName = (string) => {
-        let funkName = this.props.reduxState.functionReducer[0].meta.syns[0][this.state.syns_id];
+        let funkName = this.props.reduxState.functionReducer[this.state.syns_id].syn;
         let newName = this.props.reduxState.newNamesReducer[0].meta.syns[0][this.state.syns_id];
         let text = funkName + newName;
         console.log('saveName pressed', funkName + newName);
@@ -141,7 +141,7 @@ class NewNames extends Component {
         this.setState({
             project_id: this.props.match.params.id,
         })
-    }
+    } // End renderProject
 
     render() {
 
@@ -157,7 +157,7 @@ class NewNames extends Component {
 
         // Wait until load 
         if (this.props.reduxState.functionReducer.length != 0) {
-            currentFunction = this.props.reduxState.functionReducer[0].meta.syns[0][this.state.syns_id]
+            currentFunction = this.props.reduxState.functionReducer[this.state.syns_id].syn
 
         }
 
@@ -187,7 +187,7 @@ class NewNames extends Component {
                     <button onClick={this.handlePutClick}> PUT </button>
                     <button onClick={this.handleDeleteClick}>DELETE</button>
                     <br /><br />
-                    <div id="displayProjectName">Your Function Name Related To <b>{this.state.keyword}</b> {this.state.project_id}:</div><br />
+                    <div id="displayProjectName">Your Function Name Related To <b>{this.state.keyword}</b>:</div><br />
 
                     <span className="currentSuggestion">{currentFunction}{currentKeyword}</span>
 

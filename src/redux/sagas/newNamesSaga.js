@@ -12,7 +12,7 @@ function* getKeywordPostProject(action) {
 function* fetchProjectsFetchNames(action) {
     yield getProject(action);
     yield getSavedNames(action);
-}
+} // end fetchProjectsFetchNames
 
 // Send keyword to thesaurus.router
 function* getKeyword(action) {
@@ -28,9 +28,9 @@ function* getKeyword(action) {
 // Send function type to thesaurus.router
 function* getFunction(action) {
     try {
-        const keywordResponse = yield axios.get(`/api/thesaurus?tag=${action.payload}`)
-        console.log('getKeyword Response:', keywordResponse.data);
-        yield put({ type: 'SET_FUNCTION', payload: keywordResponse.data })
+        const functionResponse = yield axios.get(`/api/function/${action.payload}`)
+        console.log('getFunction Response:', functionResponse.data);
+        yield put({ type: 'SET_FUNCTION', payload: functionResponse.data })
     } catch (error) {
         console.log('error in getKeyword Saga', error);
     }
@@ -69,7 +69,7 @@ function* getSavedNames(action) {
     } catch (error) {
         console.log('error in getSavedNames', error);
     }
-}
+}  // end getSavedNames Saga
 
 // Remove Project Line Item and From Database
 function* removeProject(action) {
@@ -80,7 +80,7 @@ function* removeProject(action) {
     } catch (err){
         console.log(err);
     }
-} // End removeProject
+} // end removeProject Saga
 
 // Post Function Name That User Would Like To Save
 function* postName(action) {
@@ -107,8 +107,8 @@ function* postProject(action) {
         // yield put({ type: 'SET_CURRENT_PROJECT', payload: projectResponse.data})
     } catch (error) {
         console.log('error in postProject', error)
-    } // end postProject Saga
-}
+    } 
+} // end postProject Saga
 
 // Watcher Saga
 function* newNamesSaga() {

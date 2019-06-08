@@ -16,6 +16,7 @@ class UserProjects extends Component {
 
     }
     
+    // Loads Saved Names For Current Project
     loadProject(id) {
         console.log('Load Project Clicked', id);
         // "/project/${id}"
@@ -23,6 +24,7 @@ class UserProjects extends Component {
         this.props.dispatch({ type: 'FETCH_NAMES', project_id: id });
     }
 
+    // Triggers an Alert To Confirm Delete
     removeAlert(id) {
         console.log('Remove Alert');
         swal({
@@ -43,7 +45,7 @@ class UserProjects extends Component {
             swal("Your project file is safe!");
         }
         });
-    }
+    } // End removeAlert
 
     // Remove Project Row and Project From Database
     removeProject(id) {
@@ -51,7 +53,7 @@ class UserProjects extends Component {
         
         this.props.dispatch({ type: 'REMOVE_PROJECT', payload: id})
 
-    }
+    } // End removeProject
 
     render() {
 
@@ -89,9 +91,9 @@ class UserProjects extends Component {
                 </table>
             </div>
 
-        )
-    }
-}
+        ) // end return
+    } // end render
+} // end class
 
 const mapStateToProps = (reduxState) => {
     return {
