@@ -15,18 +15,23 @@ class NewNames extends Component {
         project_id: 0,
     }
 
-    // componentDidMount() {
-    //      this.loadCurrentProject();
 
-    // }
+    // ========== FUNCTIONS ========== //
+    // Functions Are In Alphabetical Order
 
+    // Changes State To What is Being Typed By The User Into The Input
     handleChange = (event) => {
         console.log('Input Keyword:', event.target.value)
+        let modKeyword;
+        let keyword;
+        modKeyword = event.target.value
+        keyword = modKeyword.replace(modKeyword.charAt(0), modKeyword.charAt(0).toUpperCase())
         this.setState({
-            keyword: event.target.value
+            keyword: keyword,
         })
     }
 
+    // Handles Click Event When Submit Button Is Pressed After Typing Text Into The Input
     handleClick = (event) => {
         event.preventDefault();
 
@@ -117,7 +122,7 @@ class NewNames extends Component {
         console.log('Remove Alert', id);
         swal({
             title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this project file!",
+            text: "Once deleted, you will not be able to recover this saved name!",
             icon: "warning",
             buttons: true,
             dangerMode: true,
@@ -165,22 +170,25 @@ class NewNames extends Component {
 
     render() {
 
+        let modKeyword;
         let currentKeyword;
         let currentFunction;
         let savedNames;
 
-        // Wait until load 
+        // currentKeyword is a Synonym of the User-Entered Keyword (Carousel)
         if (this.props.reduxState.newNamesReducer.length != 0) {
-            currentKeyword = this.props.reduxState.newNamesReducer[0].meta.syns[0][this.state.syns_id]
+            modKeyword = this.props.reduxState.newNamesReducer[0].meta.syns[0][this.state.syns_id];
+            currentKeyword = modKeyword.replace(modKeyword.charAt(0), modKeyword.charAt(0).toUpperCase())
             // console.log=('currentKeyword', currentKeyword)
         }
 
-        // Wait until load 
+        // currentFunction is a Synonym of the User-Selected Function (Carousel)
         if (this.props.reduxState.functionReducer.length != 0) {
             currentFunction = this.props.reduxState.functionReducer[this.state.syns_id].syn
 
         }
 
+        // Displays Names Saved Under the Currently Selected Project
         if (this.props.reduxState.currentProjectReducer.length != 0) {
             savedNames = this.props.reduxState.currentProjectReducer.map((savedName) => {
                 return (
