@@ -18,25 +18,13 @@ router.post('/', rejectUnauthenticated, (req, res) => {
         .catch(() => res.sendStatus(500));
 }); // End router.post/api/name
 
-// Gets Saved Names from the Database
-// router.get('/', rejectUnauthenticated, (req, res) => {
-//     console.log('In name.router.get. req.body.project_id:', req.body);
-//     const queryText = `SELECT * FROM "words" WHERE "project_id"=$1;`
-//     pool.query(queryText, [req.body])
-//         .then(response => {
-//             console.log('get saved names response:', response.data)
-//             res.send(reponse.data)
-//         }).catch(err => {
-//             res.sendStatus(500)
-//         });
-// }); // End router.get/api/name
 
 router.get('/:id', rejectUnauthenticated, (req, res) => {
     console.log('name router.get req.user.id', req.user.id);
     console.log('name router.get req.params.id', req.params.id);
     // const user_id = req.user.id;
     const project_id = req.params.id;
-    const queryText = `SELECT * FROM "words" JOIN "project" ON "project"."id" = "words"."project_id" WHERE "project_id"=$1;`;
+    const queryText = `SELECT "words"."id", "words"."text", "words"."project_id", "project"."user_id", "project"."project_name" FROM "words" JOIN "project" ON "project"."id" = "words"."project_id" WHERE "project_id"=$1;`;
     pool.query(queryText, [project_id])
     .then((result) => {
         console.log('Get Saved Names for Current Proj', result.rows);
@@ -46,6 +34,18 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
         console.log(`Error making database query ${queryText}`, error);
         res.sendStatus(500);
     })
-});
+});  // End router.get/api/name/:id
+
+// Delete from database in "words" table
+router.delete('/:id', (req, res) => {
+    console.log('name router.delete req.params.id:', req.params.id);
+    const id = req.params.id;
+    const queryText = 'DELETE FROM "words" WHERE "id"=$1;';
+    pool.query(queryText, [id])
+        .then(() => {res.sendStatus(200);})
+        .catch((err) => {
+            console.log('Error completing DELETE saved name:', err);
+        });
+}); // End router.delete/api/name/:id
 
 module.exports = router;

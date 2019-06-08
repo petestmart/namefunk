@@ -15,10 +15,10 @@ class NewNames extends Component {
         project_id: 0,
     }
 
-    componentDidMount() {
-        // this.loadCurrentProject();
+    // componentDidMount() {
+    //      this.loadCurrentProject();
 
-    }
+    // }
 
     handleChange = (event) => {
         console.log('Input Keyword:', event.target.value)
@@ -75,21 +75,6 @@ class NewNames extends Component {
         this.props.dispatch({ type: 'SEARCH_FUNCTION', payload: "put" })
     } // End function handlePutClick
 
-    // loadCurrentProject = () => {
-    //     if (this.props.reduxState.projectReducer.length > 0) {
-    //     console.log('projectReducer.project_id', this.props.reduxState.projectReducer.project_id)
-    //         this.setState({
-    //             project_id: this.props.reduxState.projectReducer[9],
-    //         })
-    //     }
-    // }
-
-    // loadProject(id) {
-    //     console.log('Load Project Clicked', id);
-    //     // "/project/${id}"
-    //     this.props.history.push(`/new/${id}`)
-    // }
-
     // Moves To Next Suggestion - Carousel - Increments Array Index by 1
     nextSuggestion = () => {
         // console.log('eachKeyword:', eachKeyword);
@@ -127,6 +112,45 @@ class NewNames extends Component {
         )
     } // End function previousSuggestion
 
+    // Triggers an Alert To Confirm Delete
+    removeAlert(id) {
+        console.log('Remove Alert', id);
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this project file!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    { this.removeSavedName(id) };
+                    swal("Poof! Your saved name has been deleted!", {
+                        icon: "success",
+
+                    });
+                } else {
+                    swal("Your saved name is safe!");
+                }
+            });
+    } // End removeAlert
+
+    // Remove Project Row and Project From Database
+    removeSavedName(id) {
+        console.log('remove button pressed. ID:', id);
+
+        this.props.dispatch({ type: 'REMOVE_SAVED_NAME', payload: { id: id, project_id: this.props.match.params.id }})
+
+    } // End removeSavedName
+
+    renderProject = () => {
+        // console.log('current keyword:', this.props.reduxState.projectReducer[this.props.match.params.id].project_name)
+        this.setState({
+            project_id: this.props.match.params.id,
+            // keyword: this.props.reduxState.projectReducer[this.props.match.params.id].project_name,
+        })
+    } // End renderProject
+
     // Sends Suggested Function name to newNamesSaga (Then to DB via name.router)
     saveName = (string) => {
         let funkName = this.props.reduxState.functionReducer[this.state.syns_id].syn;
@@ -137,11 +161,7 @@ class NewNames extends Component {
         this.renderProject();
     } // End function saveName
 
-    renderProject = () => {
-        this.setState({
-            project_id: this.props.match.params.id,
-        })
-    } // End renderProject
+    
 
     render() {
 
@@ -162,11 +182,11 @@ class NewNames extends Component {
         }
 
         if (this.props.reduxState.currentProjectReducer.length != 0) {
-            savedNames = this.props.reduxState.currentProjectReducer.map((savedName, i) => {
+            savedNames = this.props.reduxState.currentProjectReducer.map((savedName) => {
                 return (
 
-                    <tr key={i} className="projectRow">
-                        <td className="projectName">{savedName.text}</td>
+                    <tr key={savedName.id} className="savedNameRow">
+                        <td className="savedName">{savedName.text}</td>
                         <td></td>
                         <td><EditIcon /></td>
                         <td onClick={() => this.removeAlert(savedName.id)}><DeleteIcon /></td>

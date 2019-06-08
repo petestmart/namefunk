@@ -48,18 +48,6 @@ function* getProject(action) {
 } // end getProject Saga
 
 // Retrieve Project-Specific Saved Names
-// function* getSavedNames(action) {
-//     console.log('getSavedNames', action.project_id);
-//     try {
-//         const savedNamesResponse = yield axios.get(`/api/name`, action.project_id)
-//         console.log('getSavedNames Response:', savedNamesResponse.rows);
-//         yield put({ type: 'SET_CURRENT_PROJECT', payload: savedNamesResponse.rows})
-//     } catch (error) {
-//         console.log('error in getSavedNames:', error)
-//     }
-// } // end getSavedNames Saga
-
-// Retrieve Project-Specific Saved Names
 function* getSavedNames(action) {
     console.log('getSavedNames action.project_id', action.project_id);
     try {
@@ -71,7 +59,7 @@ function* getSavedNames(action) {
     }
 }  // end getSavedNames Saga
 
-// Remove Project Line Item and From Database
+// Remove Project Line Item and from Database
 function* removeProject(action) {
     console.log('removeProject Saga', action.payload);
     try {
@@ -81,6 +69,17 @@ function* removeProject(action) {
         console.log(err);
     }
 } // end removeProject Saga
+
+// Remove Saved Name Line Item and from Database
+function* removeSavedName(action) {
+    console.log('removeSavedName Saga', action.payload);
+    try {
+        yield axios.delete(`/api/name/${action.payload.id}`)
+        yield put({ type: 'FETCH_NAMES', project_id: action.payload.project_id})
+    } catch (err) {
+        console.log(err);
+    }
+}
 
 // Post Function Name That User Would Like To Save
 function* postName(action) {
@@ -118,6 +117,7 @@ function* newNamesSaga() {
     yield takeLatest('FETCH_PROJECT', fetchProjectsFetchNames)
     yield takeLatest('REMOVE_PROJECT', removeProject)
     yield takeLatest('FETCH_NAMES', getSavedNames)
+    yield takeLatest('REMOVE_SAVED_NAME', removeSavedName)
 } // end Watcher Saga newNamesSaga
 
 
