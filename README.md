@@ -85,3 +85,16 @@ Before pushing to Heroku, run `npm run build` in terminal. This will create a bu
 1. Create the necessary tables
 1. Add an environment variable for `SERVER_SESSION_SECRET` with a nice random string for security
 1. In the deploy section, select manual deploy
+
+### Authors
+Pete St. Martin
+
+### Acknowledgements
+Dane Smith
+Dev Jana
+Ally Boyd
+Chris Black
+Luke Schlangen
+Kris Szafranski
+Mary Mosman
+Baconian Cohort
