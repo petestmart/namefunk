@@ -7,6 +7,11 @@ import DeleteIcon from '@material-ui/icons/Delete';
 // import EditIcon from '@material-ui/icons/Edit';
 import { withRouter } from 'react-router-dom';
 
+// ========== MATERIAL UI ========== //
+
+
+// ========== CLASS ========== //
+
 class NewNames extends Component {
 
     state = {
@@ -171,6 +176,8 @@ class NewNames extends Component {
         this.renderProject();
     } // End function saveName
 
+    // ========== RENDER ========== //
+
     render() {
 
         let modKeyword;
@@ -215,13 +222,13 @@ class NewNames extends Component {
                         }
                     });
             }
-        }
+        } // end currentKeyword if statement
 
         // currentFunction is a Synonym of the User-Selected Function (Carousel)
         if (this.props.reduxState.functionReducer.length != 0) {
             currentFunction = this.props.reduxState.functionReducer[this.state.syns_id].syn
 
-        }
+        } // end currentFunction if statement
 
         // Displays Names Saved Under the Currently Selected Project
         if (this.props.reduxState.currentProjectReducer.length != 0) {
@@ -237,7 +244,9 @@ class NewNames extends Component {
                 )
             })
 
-        }
+        } // end savedNames if statement
+
+        // ========== RETURN ========== //
 
         return (
             <div>
@@ -258,7 +267,7 @@ class NewNames extends Component {
                     <button onClick={() => this.previousSuggestion()}>Previous</button>
                     <button onClick={() => this.nextSuggestion()}>Next</button>
                     <button onClick={() => this.saveName()}>Save</button><br />
-                    {/* <pre>{JSON.stringify(this.props.reduxState.projectReducer)}</pre> */}
+                   
                 </form>
                 <h2>Saved Names For Project: {this.state.keyword}</h2>
                 <table>
@@ -274,9 +283,9 @@ class NewNames extends Component {
                 </table>
                 <UserProjects />
             </div>
-        )
-    }
-}
+        ) // End Return 
+    } // End Render
+} // End Class
 
 const mapStateToProps = (reduxState) => {
     return {

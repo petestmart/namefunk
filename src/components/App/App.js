@@ -24,7 +24,7 @@ import NewNames from '../NewNames/NewNames';
 import './App.css';
 
 
-// ========== CLASS COMPONENT ========== //
+// ========== CLASS ========== //
 
 class App extends Component {
 
