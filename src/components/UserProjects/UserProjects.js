@@ -22,7 +22,7 @@ class UserProjects extends Component {
     }
     
     // ========== FUNCTIONS ========== //
-    // Functions Are In Alphabetical Order
+    // = Functions Are In Alphabetical Order = //
 
     // Loads Saved Names For Current Project
     loadProject(id) {
