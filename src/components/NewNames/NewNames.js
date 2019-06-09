@@ -6,6 +6,7 @@ import swal from 'sweetalert';
 import UserProjects from '../UserProjects/UserProjects';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import { withRouter } from 'react-router-dom';
 
 class NewNames extends Component {
 
@@ -13,14 +14,23 @@ class NewNames extends Component {
         keyword: '',
         syns_id: 0,
         project_id: 0,
+        // checker: false,
     }
 
+    // ========== LIFECYCLE ========== //
+
+    componentDidMount = () => {
+        // this.checkSwitch();
+        this.props.dispatch({ type: 'FETCH_USER' });
+        this.props.dispatch({ type: 'FETCH_PROJECT' });
+    }
 
     // ========== FUNCTIONS ========== //
     // Functions Are In Alphabetical Order
 
     // Changes State To What is Being Typed By The User Into The Input
     handleChange = (event) => {
+
         console.log('Input Keyword:', event.target.value)
         let modKeyword;
         let keyword;
@@ -34,15 +44,15 @@ class NewNames extends Component {
     // Handles Click Event When Submit Button Is Pressed After Typing Text Into The Input
     handleClick = (event) => {
         event.preventDefault();
-
+        // this.checkSwitch();
         // Sends User Input to newNamesSaga (Then Thesaurus API and also Starts Route To DB)
         if (this.state.keyword === '') {
             swal("Howdy, Friend", "You'll need to enter a keyword before we can name your function.")
         }
-        // else if (this.props.reduxState.newNamesReducer.length == 0) {
+        // else if (this.props.reduxState.newNamesReducer[0].length == 0) {
         //     this.handleClickStopper()
         // }
-        // else if (this.props.reduxState.newNamesReducer[0].meta.id[0] != this.state.keyword) {
+        // else if (this.props.reduxState.newNamesReducer[0].length < 2) {
         //     swal("Sorry, Friend", "That keyword has no results.")
         // }
         else {
@@ -79,6 +89,10 @@ class NewNames extends Component {
         event.preventDefault();
         this.props.dispatch({ type: 'SEARCH_FUNCTION', payload: "put" })
     } // End function handlePutClick
+
+    hardPageReload = () => {
+        window.location.reload();
+    }
 
     // Moves To Next Suggestion - Carousel - Increments Array Index by 1
     nextSuggestion = () => {
@@ -144,7 +158,7 @@ class NewNames extends Component {
     removeSavedName(id) {
         console.log('remove button pressed. ID:', id);
 
-        this.props.dispatch({ type: 'REMOVE_SAVED_NAME', payload: { id: id, project_id: this.props.match.params.id }})
+        this.props.dispatch({ type: 'REMOVE_SAVED_NAME', payload: { id: id, project_id: this.props.match.params.id } })
 
     } // End removeSavedName
 
@@ -166,8 +180,6 @@ class NewNames extends Component {
         this.renderProject();
     } // End function saveName
 
-    
-
     render() {
 
         let modKeyword;
@@ -177,9 +189,44 @@ class NewNames extends Component {
 
         // currentKeyword is a Synonym of the User-Entered Keyword (Carousel)
         if (this.props.reduxState.newNamesReducer.length != 0) {
-            modKeyword = this.props.reduxState.newNamesReducer[0].meta.syns[0][this.state.syns_id];
-            currentKeyword = modKeyword.replace(modKeyword.charAt(0), modKeyword.charAt(0).toUpperCase())
-            // console.log=('currentKeyword', currentKeyword)
+
+            if (this.props.reduxState.newNamesReducer[0].meta) {
+                console.log('this.props.reduxState.newNamesReducer[0]', this.props.reduxState.newNamesReducer)
+                console.log('this.props.reduxState.newNamesReducer[0].length', this.props.reduxState.newNamesReducer[0].length)
+                modKeyword = this.props.reduxState.newNamesReducer[0].meta.syns[0][this.state.syns_id];
+                currentKeyword = modKeyword.replace(modKeyword.charAt(0), modKeyword.charAt(0).toUpperCase())
+            }
+            else {
+
+                swal({
+                    title: "Sorry, Friend",
+                    text: "That Search Did Not Yield Any Results",
+                    icon: "warning",
+                    buttons: {
+                        false: "Okie Dokie"},
+                    dangerMode: true,
+                })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            swal("Reloading", {
+                                icon: "success",
+                                
+                            })
+                            .then( 
+                                this.hardPageReload()
+                            )
+                            
+                        } else {
+                            
+                            swal("Give It Another Shot!", 
+                            {
+                                icon: "success",
+                                buttons: ["ok"]}
+                                );
+                            
+                        }
+                    });
+            }
         }
 
         // currentFunction is a Synonym of the User-Selected Function (Carousel)
@@ -237,7 +284,7 @@ class NewNames extends Component {
                         {savedNames}
                     </tbody>
                 </table>
-                <UserProjects  />
+                <UserProjects />
             </div>
         )
     }
@@ -250,4 +297,4 @@ const mapStateToProps = (reduxState) => {
     }
 }
 
-export default connect(mapStateToProps)(NewNames);
+export default withRouter(connect(mapStateToProps)(NewNames));
