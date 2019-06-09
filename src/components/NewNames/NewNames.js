@@ -11,9 +11,9 @@ import './NewNames.css'
 import swal from 'sweetalert';
 
 // ========== MATERIAL UI ========== //
-import { makeStyles } from '@material-ui/core/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 
 
 // ========== CLASS ========== //
@@ -254,13 +254,46 @@ class NewNames extends Component {
             <div>
                 <h2>Enter keyword</h2>
                 <form>
-                    <input type="text" placeholder="keyword" onChange={this.handleChange} />
-                    <Button variant="contained" color="primary" type="submit" onClick={this.handleClick}>Submit</Button><br />
-                    <button onClick={this.handleGetClick}>GET</button>
-                    <button onClick={this.handlePostClick}>POST</button>
-                    <button onClick={this.handlePutClick}> PUT </button>
-                    <button onClick={this.handleDeleteClick}>DELETE</button>
+                    <TextField 
+                        onChange={this.handleChange} 
+                        size="medium" 
+                        label="keyword" 
+                        placeholder="ex: Pets"/>
+                    <Button 
+                        onClick={this.handleClick}
+                        size="large" 
+                        className="submitButton" 
+                        variant="contained" 
+                        color="primary" 
+                        type="submit" >Submit</Button><br /><br />
+                    <div>
+                        <h2>Function Type</h2>
+                        <Button
+                            onClick={this.handleGetClick}
+                            size="large"
+                            className="functionButton"
+                            variant="contained"
+                            color="secondary" >GET</Button> 
+                        <Button
+                            onClick={this.handlePostClick}
+                            size="large"
+                            className="functionButton"
+                            variant="contained"
+                            color="secondary" >POST</Button> 
+                        <Button
+                            onClick={this.handlePutClick}
+                            size="large"
+                            className="functionButton"
+                            variant="contained"
+                            color="secondary" >PUT</Button>
+                        <Button
+                            onClick={this.handleDeleteClick}
+                            size="large"
+                            className="functionButton"
+                            variant="contained"
+                            color="secondary" >DELETE</Button>
                     <br /><br />
+                    </div>
                     <div id="displayProjectName">Your Function Name Related To <b>{this.state.keyword}</b>:</div><br />
 
                     <span className="currentSuggestion">{currentFunction}{currentKeyword}</span>

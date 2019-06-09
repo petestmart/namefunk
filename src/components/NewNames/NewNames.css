@@ -1,3 +1,4 @@
+
 .currentSuggestion {
     font-size: 36px;
     
@@ -6,6 +7,10 @@
 .savedName {
     padding: 15px;
     padding-left: 250px;
+}
+
+.submitButton {
+    padding: 50px;
 }
 
 #displayProjectName {
