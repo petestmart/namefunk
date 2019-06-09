@@ -1,3 +1,6 @@
+// ========== FUNCTION ROUTER ========== //
+// RECEIVES SYNONYMS FOR FUNCTIONS THAT ARE STORED IN THE DATABASE //
+
 const express = require('express');
 const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
@@ -5,8 +8,6 @@ const pool = require('../modules/pool');
 require('dotenv').config();
 
 router.get('/get', rejectUnauthenticated, (req, res) => {
-    console.log('function router.get req.params', req.params.function);
-    // const funk = req.params.function;
     const queryText = 'SELECT * FROM "get";';
     pool.query(queryText)
     .then((result) => {
@@ -20,8 +21,6 @@ router.get('/get', rejectUnauthenticated, (req, res) => {
 });
 
 router.get('/post', rejectUnauthenticated, (req, res) => {
-    console.log('function router.get req.params', req.params.function);
-    // const funk = req.params.function;
     const queryText = 'SELECT * FROM "post";';
     pool.query(queryText)
         .then((result) => {
@@ -35,8 +34,6 @@ router.get('/post', rejectUnauthenticated, (req, res) => {
 });
 
 router.get('/put', rejectUnauthenticated, (req, res) => {
-    console.log('function router.get req.params', req.params.function);
-    // const funk = req.params.function;
     const queryText = 'SELECT * FROM "put";';
     pool.query(queryText)
         .then((result) => {
@@ -50,8 +47,6 @@ router.get('/put', rejectUnauthenticated, (req, res) => {
 });
 
 router.get('/delete', rejectUnauthenticated, (req, res) => {
-    console.log('function router.get req.params', req.params.function);
-    // const funk = req.params.function;
     const queryText = 'SELECT * FROM "delete";';
     pool.query(queryText)
         .then((result) => {

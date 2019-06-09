@@ -1,8 +1,4 @@
-
--- USER is a reserved keyword with Postgres
--- You must use double quotes in every query that user is in:
--- ex. SELECT * FROM "user";
--- Otherwise you will have errors!
+-- EXECUTE THE FOLLOWING SQL QUERIES IN POSTICO (OR SIMILAR APPLICATION) --
 CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
@@ -42,6 +38,8 @@ CREATE TABLE "delete" (
 	"id" SERIAL PRIMARY KEY,
 	"syn" VARCHAR (25)
 );
+
+-- HARD CODED SYNONYMS FOR FUNCTIONS: GET, POST, PUT, DELETE
 
 INSERT INTO "get" (syn) VALUES ('get'),('fetch'),('bring'),('grab'),('pickUp'),('extract'),('snag'),('wrangle'),('goGet'),('obtain');
 

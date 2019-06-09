@@ -1,4 +1,4 @@
-
+// STORES STATE FOR CURRENTLY SELECTED PROJECT // 
 
 const currentProjectReducer = (state = [], action) => {
 
