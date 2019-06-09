@@ -1,22 +1,18 @@
+// ========== REACT ========== //
 import React, { Component } from 'react';
 import {
   HashRouter as Router,
   Route,
   Redirect,
   Switch,
-  // withRouter,
 } from 'react-router-dom';
-import logo from './logo.svg';
 import { connect } from 'react-redux';
 
-// import Nav from '../Nav/Nav';
-// import TemporaryDrawer from '../TemporaryDrawer/TemporaryDrawer';
+// ========== COMPONENTS ========== //
+import logo from './logo.svg';
 import ButtonAppBar from '../ButtonAppBar/ButtonAppBar';
-// import TemporaryDrawer from '../TemporaryDrawer/TemporaryDrawer';
 import Footer from '../Footer/Footer';
-
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-
 import SavedNames from '../SavedNames/SavedNames';
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
@@ -24,16 +20,20 @@ import InfoPage from '../InfoPage/InfoPage';
 import UserProjects from '../UserProjects/UserProjects';
 import NewNames from '../NewNames/NewNames';
 
+// ========== STYLE ========== //
 import './App.css';
 
 
-
+// ========== CLASS COMPONENT ========== //
 
 class App extends Component {
+
+  // ========== LIFE CYCLE ========== //
+
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_USER' });
     this.props.dispatch({ type: 'FETCH_PROJECT'});
-    // this.props.dispatch({ type: 'FETCH_NAMES' });
+    this.props.dispatch({ type: 'FETCH_NAMES' });
   }
 
   render() {
@@ -44,7 +44,6 @@ class App extends Component {
           <ButtonAppBar />
           <img src={logo} className="App-logo" alt="logo" />
 
-          {/* <TemporaryDrawer /> */}
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import SavedNames from '../SavedNames/SavedNames';
 import { connect } from 'react-redux';
 import './NewNames.css'
 import swal from 'sweetalert';
@@ -14,13 +13,11 @@ class NewNames extends Component {
         keyword: '',
         syns_id: 0,
         project_id: 0,
-        // checker: false,
     }
 
     // ========== LIFECYCLE ========== //
 
     componentDidMount = () => {
-        // this.checkSwitch();
         this.props.dispatch({ type: 'FETCH_USER' });
         this.props.dispatch({ type: 'FETCH_PROJECT' });
     }
@@ -44,17 +41,12 @@ class NewNames extends Component {
     // Handles Click Event When Submit Button Is Pressed After Typing Text Into The Input
     handleClick = (event) => {
         event.preventDefault();
-        // this.checkSwitch();
+
         // Sends User Input to newNamesSaga (Then Thesaurus API and also Starts Route To DB)
         if (this.state.keyword === '') {
             swal("Howdy, Friend", "You'll need to enter a keyword before we can name your function.")
         }
-        // else if (this.props.reduxState.newNamesReducer[0].length == 0) {
-        //     this.handleClickStopper()
-        // }
-        // else if (this.props.reduxState.newNamesReducer[0].length < 2) {
-        //     swal("Sorry, Friend", "That keyword has no results.")
-        // }
+
         else {
             this.props.dispatch({
                 type: 'SEARCH_KEYWORD',
@@ -154,19 +146,16 @@ class NewNames extends Component {
             });
     } // End removeAlert
 
-    // Remove Project Row and Project From Database
+    // Removes Project Row and Project From Database
     removeSavedName(id) {
-        console.log('remove button pressed. ID:', id);
-
         this.props.dispatch({ type: 'REMOVE_SAVED_NAME', payload: { id: id, project_id: this.props.match.params.id } })
 
     } // End removeSavedName
 
+    // Changes State to Match URL of Project ID
     renderProject = () => {
-        // console.log('current keyword:', this.props.reduxState.projectReducer[this.props.match.params.id].project_name)
         this.setState({
             project_id: this.props.match.params.id,
-            // keyword: this.props.reduxState.projectReducer[this.props.match.params.id].project_name,
         })
     } // End renderProject
 
@@ -193,13 +182,11 @@ class NewNames extends Component {
         if (this.props.reduxState.newNamesReducer.length != 0) {
 
             if (this.props.reduxState.newNamesReducer[0].meta) {
-                console.log('this.props.reduxState.newNamesReducer[0]', this.props.reduxState.newNamesReducer)
-                console.log('this.props.reduxState.newNamesReducer[0].length', this.props.reduxState.newNamesReducer[0].length)
                 modKeyword = this.props.reduxState.newNamesReducer[0].meta.syns[0][this.state.syns_id];
                 currentKeyword = modKeyword.replace(modKeyword.charAt(0), modKeyword.charAt(0).toUpperCase())
             }
             else {
-
+                // Alerts User If No Search Results Were Found
                 swal({
                     title: "Sorry, Friend",
                     text: "That Search Did Not Yield Any Results",
@@ -225,7 +212,6 @@ class NewNames extends Component {
                                 icon: "success",
                                 buttons: ["ok"]}
                                 );
-                            
                         }
                     });
             }
