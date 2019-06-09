@@ -3,6 +3,11 @@
     
 }
 
+.savedName {
+    padding: 15px;
+    padding-left: 250px;
+}
+
 #displayProjectName {
     font-size: 12px;
 }

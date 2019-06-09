@@ -80,7 +80,7 @@ class UserProjects extends Component {
                 <table>
                     <tbody>
                         <tr>
-                            <th>My Projects</th>
+                            <th className="projectName">My Projects</th>
                             <th></th>
                             <th></th>
                             <th></th>

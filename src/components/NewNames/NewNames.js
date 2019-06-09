@@ -4,7 +4,7 @@ import './NewNames.css'
 import swal from 'sweetalert';
 import UserProjects from '../UserProjects/UserProjects';
 import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
+// import EditIcon from '@material-ui/icons/Edit';
 import { withRouter } from 'react-router-dom';
 
 class NewNames extends Component {
@@ -42,11 +42,11 @@ class NewNames extends Component {
     handleClick = (event) => {
         event.preventDefault();
 
-        // Sends User Input to newNamesSaga (Then Thesaurus API and also Starts Route To DB)
+        // Alert For Empty Input Field
         if (this.state.keyword === '') {
             swal("Howdy, Friend", "You'll need to enter a keyword before we can name your function.")
         }
-
+        // Sends User Input to newNamesSaga (Then Thesaurus API and also Starts Route To DB)
         else {
             this.props.dispatch({
                 type: 'SEARCH_KEYWORD',
@@ -231,7 +231,7 @@ class NewNames extends Component {
                     <tr key={savedName.id} className="savedNameRow">
                         <td className="savedName">{savedName.text}</td>
                         <td></td>
-                        <td><EditIcon /></td>
+                        <td></td>
                         <td onClick={() => this.removeAlert(savedName.id)}><DeleteIcon /></td>
                     </tr>
                 )
@@ -264,7 +264,7 @@ class NewNames extends Component {
                 <table>
                     <tbody>
                         <tr>
-                            <th>Names</th>
+                            <th className="savedName">Names</th>
                             <th></th>
                             <th></th>
                             <th></th>
@@ -280,7 +280,6 @@ class NewNames extends Component {
 
 const mapStateToProps = (reduxState) => {
     return {
-        // keywordState: reduxState.newNamesReducer
         reduxState
     }
 }
