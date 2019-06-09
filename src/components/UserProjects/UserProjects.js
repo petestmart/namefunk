@@ -11,8 +11,8 @@ import swal from 'sweetalert';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 
-// ========== CLASS ========== //
 
+// ========== CLASS ========== //
 class UserProjects extends Component {
 
     state = {
@@ -57,9 +57,7 @@ class UserProjects extends Component {
     // Remove Project Row and Project From Database
     removeProject(id) {
         console.log('remove button pressed. ID:', id);
-        
         this.props.dispatch({ type: 'REMOVE_PROJECT', payload: id})
-
     } // End removeProject
 
     // ========== RENDER ========== //
