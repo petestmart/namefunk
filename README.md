@@ -3,12 +3,12 @@
 NameFunk is the application for programmers around the globe to cut down on decision fatigue by telling you what to name your functions.  Simply enter a term that defines your project and NameFunk will provide you with ideas.  Create an account to save your function names and come back later to reference them.  
 
 ## Built With
-```
+
 This version uses React, Redux, Express, Passport, and PostgreSQL
 Additional Technologies listed below (see "Additional Technologies Used"), and a full list of dependencies can be found in `package.json`.
 
 ## Getting Started
-```
+
 ### Prerequisites
 
 Before you get started, make sure you have the following software installed on your computer:
@@ -22,6 +22,8 @@ Before you get started, make sure you have the following software installed on y
 NameFunk uses the API from Merriam-Webster's Collegiate Thesaurus.  
 
 Sign up for an API Key at: [Merriam-Webster's Collegiate Thesaurus](https://dictionaryapi.com/products/api-collegiate-thesaurus)
+
+
 
 ### Create database and table
 
@@ -43,23 +45,6 @@ If you would like to name your database something else, you will need to change 
 * Run `npm run server`
 * Run `npm run client`
 * Navigate to `localhost:3000`
-
-
-## Testing Routes with Postman
-
-To use Postman with this repo, you will need to set up requests in Postman to register a user and login a user at a minimum. 
-
-Keep in mind that once you using the login route, Postman will manage your session cookie for you just like a browser, ensuring it is sent with each subsequent request. If you delete the `localhost` cookie in Postman, it will effectively log you out.
-
-1. Start the server - `npm run server`
-2. [Import the sample routes JSON file](./PostmanPrimeSoloRoutes.json) by clicking `Import` in Passport. Select the file.
-3. Click `Collections` and `Send` the following three calls in order:
-    1. `POST /api/user/register` registers a new user, see body to change username/password
-    2. `POST /api/user/login` will login a user, see body to change username/password
-    3. `GET /api/user` will get user information, by default it's not very much
-
-After running the login route above, you can try any other route you've created that requires a logged in user!
-
 
 ## Production Build
 
