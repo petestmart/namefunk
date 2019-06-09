@@ -1,8 +1,4 @@
 
-// state = {
-//     project_id: ,
-
-// }
 
 const projectReducer = (state = [], action) => {
     if (action.type === 'SET_PROJECTS'){

@@ -85,7 +85,6 @@ function* removeSavedName(action) {
 function* postName(action) {
     try {
         const nameResponse = yield axios.post(`/api/name`, action.payload);
-        console.log('action.payload', action.payload);
         console.log('postName Response:', nameResponse.data);
         yield put({ type: 'FETCH_NAMES', project_id: action.payload.project_id})
     } catch (error) {
@@ -98,12 +97,8 @@ function* postProject(action) {
     console.log('postProject');
     try {
         const projectResponse = yield axios.post(`/api/project`, {project_name: action.payload});
-        console.log('action.payload', action);
-        console.log('postProject Response:', projectResponse.data);
-        console.log('postProj projectResponse.data.id', projectResponse.data.id)
         yield put({ type: 'FETCH_PROJECT', payload: projectResponse.data })
         action.history.push(`/new/${projectResponse.data[0].id}`)
-        // yield put({ type: 'SET_CURRENT_PROJECT', payload: projectResponse.data})
     } catch (error) {
         console.log('error in postProject', error)
     } 

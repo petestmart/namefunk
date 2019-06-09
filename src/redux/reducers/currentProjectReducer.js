@@ -1,7 +1,4 @@
-// state = {
-//     project_id: ,
 
-// }
 
 const currentProjectReducer = (state = [], action) => {
 
