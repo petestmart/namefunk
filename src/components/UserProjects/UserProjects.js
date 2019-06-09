@@ -1,12 +1,17 @@
+// ========== REACT ========== //
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+
+// ========== STYLE ========== //
 import './UserProjects.css';
+import swal from 'sweetalert';
+
+// ========== MATERIAL UI ========== //
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
-import swal from 'sweetalert';
-import {withRouter} from 'react-router-dom';
 
-
+// ========== CLASS ========== //
 
 class UserProjects extends Component {
 
@@ -16,6 +21,9 @@ class UserProjects extends Component {
 
     }
     
+    // ========== FUNCTIONS ========== //
+    // = Functions Are In Alphabetical Order = //
+
     // Loads Saved Names For Current Project
     loadProject(id) {
         console.log('Load Project Clicked', id);
@@ -54,6 +62,7 @@ class UserProjects extends Component {
 
     } // End removeProject
 
+    // ========== RENDER ========== //
     render() {
 
         let userProjects;
@@ -74,6 +83,7 @@ class UserProjects extends Component {
             })
         }
 
+        // ========== RETURN ========== //
         return (
             <div>
                 <h2>Projects</h2>
