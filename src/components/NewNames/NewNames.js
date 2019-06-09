@@ -14,6 +14,15 @@ import swal from 'sweetalert';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import { ThemeProvider } from '@material-ui/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
+
+
+const theme = createMuiTheme({
+    palette: {
+        secondary: { main: '#e61610' },
+    },
+});
 
 
 // ========== CLASS ========== //
@@ -188,6 +197,8 @@ class NewNames extends Component {
         let currentFunction;
         let savedNames;
 
+        
+
         // currentKeyword is a Synonym of the User-Entered Keyword (Carousel)
         if (this.props.reduxState.newNamesReducer.length != 0) {
 
@@ -252,6 +263,7 @@ class NewNames extends Component {
         // ========== RETURN ========== //
         return (
             <div>
+                <ThemeProvider theme={theme} >
                 <h2>Enter keyword</h2>
                 <form>
                     <TextField 
@@ -299,11 +311,29 @@ class NewNames extends Component {
                     <span className="currentSuggestion">{currentFunction}{currentKeyword}</span>
 
                     <br /><br />
-                    <button onClick={() => this.previousSuggestion()}>Previous</button>
-                    <button onClick={() => this.nextSuggestion()}>Next</button>
-                    <button onClick={() => this.saveName()}>Save</button><br />
+                    <Button
+                        onClick={() => this.previousSuggestion()}
+                        size="small"
+                        className="carouselButton"
+                        variant="outlined"
+                        color="default" >prev</Button>
+                    <Button
+                        onClick={() => this.nextSuggestion()}
+                        size="small"
+                        className="carouselButton"
+                        variant="outlined"
+                        color="default" >next</Button>
+                    <Button
+                        onClick={() => this.saveName()}
+                        size="small"
+                        className="carouselSaveButton"
+                        variant="outlined"
+                        color="default" >save</Button>
+                    
+                    <br />
                    
                 </form>
+                <br /><br /><br />
                 <h2>Saved Names For Project: {this.state.keyword}</h2>
                 <table>
                     <tbody>
@@ -317,6 +347,7 @@ class NewNames extends Component {
                     </tbody>
                 </table>
                 <UserProjects />
+                </ThemeProvider>
             </div>
         ) // End Return 
     } // End Render
