@@ -4,7 +4,7 @@ NameFunk is the application for programmers around the globe to cut down on deci
 
 ## Built With
 
-This version uses React, Redux, Express, Passport, and PostgreSQL
+This version uses React, Redux, Express, Passport, and PostgreSQL.  
 Additional Technologies listed below (see "Additional Technologies Used"), and a full list of dependencies can be found in `package.json`.
 
 ## Getting Started
@@ -42,7 +42,7 @@ If you would like to name your database something else, you will need to change 
     MW_THESAURUS_API_KEY=merriamWebsterApiKey
     SERVER_SESSION_SECRET=superDuperSecret
     ```
-    While you're in your new `.env` file, replace `merriamWebsterApiKey` with the API Key you received from Merriam-Webster's Collegiate Thesaurus (see "API Key" if you do not have an API Key).  Also, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep the application secure. Here's a site that can help you: [https://passwordsgenerator.net/](https://passwordsgenerator.net/). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning.
+    While you're in your new `.env` file, replace `merriamWebsterApiKey` with the API Key you received from Merriam-Webster's Collegiate Thesaurus (see "API Key" if you do not have an API Key).  Also, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep the application secure. Here's a site that can help you: [https://passwordsgenerator.net/](https://passwordsgenerator.net/). You will receive a warning if you create a secret with less than eight characters or leave it as `superDuperSecret`.
 * Start postgres if not running already by using `brew services start postgresql`
 * Run `npm run server`
 * Run `npm run client`
