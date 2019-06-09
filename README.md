@@ -2,9 +2,14 @@
 
 NameFunk is the application for programmers around the globe to cut down on decision fatigue by telling you what to name your functions.  Simply enter a term that defines your project and NameFunk will provide you with ideas.  Create an account to save your function names and come back later to reference them.  
 
-This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
+## Built With
+```
+This version uses React, Redux, Express, Passport, and PostgreSQL
+Additional Technologies listed below (see "Additional Technologies Used"), and a full list of dependencies can be found in `package.json`.
 
-## Prerequisites
+## Getting Started
+```
+### Prerequisites
 
 Before you get started, make sure you have the following software installed on your computer:
 
@@ -12,21 +17,28 @@ Before you get started, make sure you have the following software installed on y
 - [PostrgeSQL](https://www.postgresql.org/)
 - [Nodemon](https://nodemon.io/)
 
-## Create database and table
+### API Key
+
+NameFunk uses the API from Merriam-Webster's Collegiate Thesaurus.  
+
+Sign up for an API Key at: [Merriam-Webster's Collegiate Thesaurus](https://dictionaryapi.com/products/api-collegiate-thesaurus)
+
+### Create database and table
 
 Create a new database called `namefunk` and create tables using the SQL commands located in the database.sql file
 
 
 If you would like to name your database something else, you will need to change `namefunk` to the name of your new database name in `server/modules/pool.js`
 
-## Development Setup Instructions
+
+### Installation Instructions
 
 * Run `npm install`
 * Create a `.env` file at the root of the project and paste this line into the file:
     ```
     SERVER_SESSION_SECRET=superDuperSecret
     ```
-    While you're in your new `.env` file, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. Here's a site that can help you: [https://passwordsgenerator.net/](https://passwordsgenerator.net/). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning.
+    While you're in your new `.env` file, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep the application secure. Here's a site that can help you: [https://passwordsgenerator.net/](https://passwordsgenerator.net/). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning.
 * Start postgres if not running already by using `brew services start postgresql`
 * Run `npm run server`
 * Run `npm run client`
@@ -78,7 +90,7 @@ This code is also heavily commented. We recommend reading through the comments, 
   * LogOutButton/LogOutButton
   * ProtectedRoute/ProtectedRoute
 
-## Technologies Used
+## Additional Technologies Used
 * HTML5
 * CSS
 * React.js
