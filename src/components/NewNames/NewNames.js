@@ -173,8 +173,10 @@ class NewNames extends Component {
     // Sends Suggested Function name to newNamesSaga (Then to DB via name.router)
     saveName = (string) => {
         let funkName = this.props.reduxState.functionReducer[this.state.syns_id].syn;
-        let newName = this.props.reduxState.newNamesReducer[0].meta.syns[0][this.state.syns_id];
+        let modNewName = this.props.reduxState.newNamesReducer[0].meta.syns[0][this.state.syns_id]
+        let newName = modNewName.replace(modNewName.charAt(0), modNewName.charAt(0).toUpperCase());
         let text = funkName + newName;
+
         console.log('saveName pressed', funkName + newName);
         this.props.dispatch({ type: 'SAVE_NAME', payload: { text: text, project_id: this.props.match.params.id } })
         this.renderProject();
