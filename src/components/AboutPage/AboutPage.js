@@ -4,7 +4,7 @@ import './AboutPage.css';
 const AboutPage = () => (
   <div>
     <div>
-      <h2>NameFunk - The Function Naming Tool For Programmers</h2>
+      <h2>The Function Naming Tool For Programmers</h2>
       <p className="aboutBody">
         NameFunk is the application for programmers around the globe to cut down on decision fatigue by telling you what to name your functions.  Simply enter a term that defines your project and NameFunk will provide you with ideas.  Create an account to save your function names and come back later to reference them.
       </p>
