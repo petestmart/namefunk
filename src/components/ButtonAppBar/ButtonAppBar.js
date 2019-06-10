@@ -40,7 +40,7 @@ function ButtonAppBar(props) {
                     <Typography variant="h1" className={classes.title}>
                             Welcome, {props.user.username}!
           </Typography>
-                    <Button color="inherit">Login</Button>
+                    <Button color="inherit">Logout</Button>
                 </Toolbar>
             </AppBar>
             </ThemeProvider>
