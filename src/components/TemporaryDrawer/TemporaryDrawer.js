@@ -1,20 +1,28 @@
+// ========== REACT ========== //
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+// ========== MATERIAL UI ========== //
 import Drawer from '@material-ui/core/Drawer';
-// import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-// import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-import MenuIcon from '@material-ui/icons/Menu';
+
+// ========== STYLE ========== //
+import { makeStyles } from '@material-ui/core/styles';
+import './TemporaryDrawer.css';
+
+// ========== ICONS ========== //
 import IconButton from '@material-ui/core/IconButton';
-// import LogoutIcon from '@material-ui/core/LogoutIcon';
-// import logo from '../App/logo.svg';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import MenuIcon from '@material-ui/icons/Menu';
+import HomeIcon from '@material-ui/icons/Home';
+import FolderIcon from '@material-ui/icons/Folder';
+import DashboardIcon from '@material-ui/icons/Dashboard';
+import InfoIcon from '@material-ui/icons/Info';
+import AccountIcon from '@material-ui/icons/AccountCircle';
 
 
 const useStyles = makeStyles({
@@ -61,57 +69,16 @@ function TemporaryDrawer(props) {
             </List>
 
             <Divider />
-
             <List>
-                {[
-                    <Link to="/home">
-                        {props.user.id ? 'Get More Names' : 'Login / Register'}
-                    </Link>,
-                    <Link to="/names">
-                        {props.user.id ? 'Saved Names' : ''}
-                    </Link>
-                    ,
-                    <Link to="/project">
-                        { props.user.id ? 'My Projects' : '' }
-                    </Link>,
-                    <Link to="/new">
-                        { props.user.id ? 'New Project' : ''}
-                    </Link>
-                ,
-                    // {props.user.id && (
-                    //         <>
-                    <Link className="nav-link" to="/info">
-                        Info Page
-                    </Link>
-                    // </>
-                    // )}
-                ].map((text, index) => (
-                    <ListItem button key={text}>
-                    <ListItemIcon>{index % 2 === 0 ?
-                        <i class="material-icons">
-                            folder
-                            </i> :
-                        <MailIcon />
-                    }
-                    </ListItemIcon>
-                    <ListItemText primary={text} />
-                </ListItem>
-                ))}
+                <ListItem component={Link} to="/home" button><HomeIcon className="icon" /> Home</ListItem>
+                <ListItem component={Link} to="/names" button><FolderIcon className="icon" /> Saved Names</ListItem>
+                <ListItem component={Link} to="/project" button><DashboardIcon className="icon" /> My Project</ListItem>
+                <ListItem component={Link} to="/about" button><InfoIcon className="icon" /> About</ListItem>
             </List>
+
             <Divider />
             <List>
-                {['Logout'].map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemIcon>{index % 2 === 0 ?
-                            <i class="material-icons">
-                                check_box_outline_blank
-                            </i> :
-                            <i class="material-icons">
-                                account_circle
-                            </i>}</ListItemIcon>
-                        <ListItemText primary={text} />
-                    </ListItem>
-                ))}
+                <ListItem component={Link} to="/home" button><AccountIcon className="icon" /> Logout</ListItem>
             </List>
         </div>
     );
