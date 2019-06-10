@@ -21,7 +21,7 @@ const AboutPage = () => (
         <li>Axios</li>
         <li>Material UI</li>
         <li>SweetAlert</li>
-        <li>API from Merriam-Webster (for finding similar words)</li>
+        <li>API from Merriam-Webster's Collegiate Thesaurus (for finding similar words)</li>
       </ul>
       <h3>Authors</h3>
       <ul>
