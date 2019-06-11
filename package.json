@@ -31,12 +31,13 @@
     "client": "react-scripts start",
     "server": "nodemon --watch server server/server.js",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "jest",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
     "nodemon": "^1.18.10",
-    "react-scripts": "latest"
+    "react-scripts": "latest",
+    "supertest": "^4.0.2"
   },
   "browserslist": [
     ">0.2%",

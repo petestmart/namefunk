@@ -36,6 +36,7 @@ const AboutPage = () => (
         <li>Luke Schlangen</li>
         <li>Kris Szafranski</li>
         <li>Mary Mosman</li>
+        <li>Baconian Cohort</li>
       </ul>
     </div>
   </div>
