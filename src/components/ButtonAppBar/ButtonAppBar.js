@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 
 const theme = createMuiTheme({
     palette: {
-        primary: { main: '#e61610'},
+        primary: { main: '#e61610' },
     },
 });
 
@@ -34,15 +34,18 @@ function ButtonAppBar(props) {
     return (
         <div className={classes.root}>
             <ThemeProvider theme={theme}>
-            <AppBar position="static">
-                <Toolbar>
+                <AppBar position="static">
+                    <Toolbar>
                         <TemporaryDrawer />
-                    <Typography variant="h1" className={classes.title}>
+                        <Typography variant="h1" className={classes.title}>
                             Welcome, {props.user.username}!
-          </Typography>
-                    <Button color="inherit">Logout</Button>
-                </Toolbar>
-            </AppBar>
+                    </Typography>
+                        <Button
+                            color="inherit"
+                            onClick={() => props.dispatch({ type: 'LOGOUT' })}
+                        >Logout</Button>
+                    </Toolbar>
+                </AppBar>
             </ThemeProvider>
         </div>
     );
