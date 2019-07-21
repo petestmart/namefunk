@@ -1,3 +1,5 @@
+// Child of NewNames Component
+
 // ========== REACT ========== //
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -8,6 +10,7 @@ import './UserProjects.css';
 import swal from 'sweetalert';
 
 // ========== MATERIAL UI ========== //
+import Card from '@material-ui/core/Card';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 
@@ -20,7 +23,7 @@ class UserProjects extends Component {
         syns_id: 0,
 
     }
-    
+
     // ========== FUNCTIONS ========== //
     // = Functions Are In Alphabetical Order = //
 
@@ -41,23 +44,23 @@ class UserProjects extends Component {
             buttons: true,
             dangerMode: true,
         })
-        .then((willDelete) => {
-        if (willDelete) {
-            { this.removeProject(id) };
-            swal("Poof! Your project file has been deleted!", {
-                icon: "success",
-                
+            .then((willDelete) => {
+                if (willDelete) {
+                    { this.removeProject(id) };
+                    swal("Poof! Your project file has been deleted!", {
+                        icon: "success",
+
+                    });
+                } else {
+                    swal("Your project file is safe!");
+                }
             });
-        } else {
-            swal("Your project file is safe!");
-        }
-        });
     } // End removeAlert
 
     // Remove Project Row and Project From Database
     removeProject(id) {
         console.log('remove button pressed. ID:', id);
-        this.props.dispatch({ type: 'REMOVE_PROJECT', payload: id})
+        this.props.dispatch({ type: 'REMOVE_PROJECT', payload: id })
     } // End removeProject
 
     // ========== RENDER ========== //
@@ -71,8 +74,8 @@ class UserProjects extends Component {
                 return (
                     <tr key={i} className="projectRow">
                         <td className="projectName">{project.project_name}</td>
-                        <td 
-                        onClick={() => this.loadProject(project.id)}
+                        <td
+                            onClick={() => this.loadProject(project.id)}
                         ><EditIcon /></td>
                         <td></td>
                         <td onClick={() => this.removeAlert(project.id)}><DeleteIcon /></td>
@@ -84,18 +87,20 @@ class UserProjects extends Component {
         // ========== RETURN ========== //
         return (
             <div>
-                <h2>Projects</h2>
-                <table>
-                    <tbody>
-                        <tr>
-                            <th className="projectName">My Projects</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        {userProjects}
-                    </tbody>
-                </table>
+                <Card className="userProjectCard">
+                    <h2>Projects</h2>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th className="projectName">My Projects</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            {userProjects}
+                        </tbody>
+                    </table>
+                </Card>
             </div>
 
         ) // end return

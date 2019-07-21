@@ -4,9 +4,43 @@
     
 }
 
+.enterKeyword {
+    padding: 10px;
+    margin-left: 10%; 
+    margin-right: 10%; 
+}
+
+.enterKeywordForm {
+    background-color: #ffffff;
+    margin: 20px auto;
+    padding: 15px;
+    padding-left: 25%;
+}
+
+.functionNameSelect {
+    box-align: center;
+    padding: 15%;
+    margin-left: 10%; 
+    margin-right: 10%; 
+    margin-top: 5px;
+}
+
+/* .functionButton {
+    /* padding: 100px; */
+    /* margin: 100px; */
+    /* border: 100px; */
+/* } */ 
+
 .savedName {
     padding: 15px;
-    padding-left: 250px;
+    padding-left: 25%;
+}
+
+.savedNamesForProject {
+    padding: 10px;
+    margin-left: 10%; 
+    margin-right: 10%; 
+    margin-top:10px;
 }
 
 .submitButton {

@@ -11,8 +11,9 @@ import './NewNames.css'
 import swal from 'sweetalert';
 
 // ========== MATERIAL UI ========== //
-import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
+import DeleteIcon from '@material-ui/icons/Delete';
+import Card from '@material-ui/core/Card';
 import TextField from '@material-ui/core/TextField';
 import { ThemeProvider } from '@material-ui/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -197,7 +198,7 @@ class NewNames extends Component {
         let currentFunction;
         let savedNames;
 
-        
+
 
         // currentKeyword is a Synonym of the User-Entered Keyword (Carousel)
         if (this.props.reduxState.newNamesReducer.length != 0) {
@@ -213,26 +214,28 @@ class NewNames extends Component {
                     text: "That Search Did Not Yield Any Results",
                     icon: "warning",
                     buttons: {
-                        false: "Okie Dokie"},
+                        false: "Okie Dokie"
+                    },
                     dangerMode: true,
                 })
                     .then((willDelete) => {
                         if (willDelete) {
                             swal("Reloading", {
                                 icon: "success",
-                                
+
                             })
-                            .then( 
-                                this.hardPageReload()
-                            )
-                            
+                                .then(
+                                    this.hardPageReload()
+                                )
+
                         } else {
-                            
-                            swal("Give It Another Shot!", 
-                            {
-                                icon: "success",
-                                buttons: ["ok"]}
-                                );
+
+                            swal("Give It Another Shot!",
+                                {
+                                    icon: "success",
+                                    buttons: ["ok"]
+                                }
+                            );
                         }
                     });
             }
@@ -264,34 +267,40 @@ class NewNames extends Component {
         return (
             <div>
                 <ThemeProvider theme={theme} >
-                <h2>Enter keyword</h2>
-                <form>
-                    <TextField 
-                        onChange={this.handleChange} 
-                        size="medium" 
-                        label="keyword" 
-                        placeholder="ex: Pets"/>
-                    <Button 
-                        onClick={this.handleClick}
-                        size="large" 
-                        className="submitButton" 
-                        variant="contained" 
-                        color="primary" 
-                        type="submit" >Submit</Button><br /><br />
-                    <div>
+                    <Card className="enterKeyword">
+                        <h2>Enter keyword</h2>
+                        <form className="enterKeywordForm">
+                            <TextField
+                                onChange={this.handleChange}
+                                size="medium"
+                                label="keyword"
+                                placeholder="ex: Pets" />
+
+                            <Button
+                                onClick={this.handleClick}
+                                size="large"
+                                className="submitButton"
+                                variant="contained"
+                                color="primary"
+                                type="submit" >Submit</Button>
+                        </form>
+                    </Card>
+                    
+                    <Card className="functionNameSelect">
+                    <div >
                         <h2>Function Type</h2>
                         <Button
                             onClick={this.handleGetClick}
                             size="large"
                             className="functionButton"
                             variant="contained"
-                            color="secondary" >GET</Button> 
+                            color="secondary" >GET</Button>
                         <Button
                             onClick={this.handlePostClick}
                             size="large"
                             className="functionButton"
                             variant="contained"
-                            color="secondary" >POST</Button> 
+                            color="secondary" >POST</Button>
                         <Button
                             onClick={this.handlePutClick}
                             size="large"
@@ -304,13 +313,13 @@ class NewNames extends Component {
                             className="functionButton"
                             variant="contained"
                             color="secondary" >DELETE</Button>
-                    <br /><br />
+                       
                     </div>
-                    <div id="displayProjectName">Your Function Name Related To <b>{this.state.keyword}</b>:</div><br />
+                    <div id="displayProjectName">Your Function Name Related To <b>{this.state.keyword}</b>:</div><br /> 
 
-                    <span className="currentSuggestion">{currentFunction}{currentKeyword}</span>
+                        <div className="currentSuggestion">{currentFunction}{currentKeyword}</div><br />
 
-                    <br /><br />
+                   
                     <Button
                         onClick={() => this.previousSuggestion()}
                         size="small"
@@ -329,24 +338,25 @@ class NewNames extends Component {
                         className="carouselSaveButton"
                         variant="outlined"
                         color="default" >save</Button>
-                    
+
                     <br />
-                   
-                </form>
-                <br /><br /><br />
-                <h2>Saved Names For Project: {this.state.keyword}</h2>
-                <table>
-                    <tbody>
-                        <tr>
-                            <th className="savedName">Names</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        {savedNames}
-                    </tbody>
-                </table>
-                <UserProjects />
+                    </Card>
+                    
+                    <Card className="savedNamesForProject">
+                    <h2>Saved Names For Project: {this.state.keyword}</h2>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th className="savedName">Names</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            {savedNames}
+                        </tbody>
+                    </table>
+                    </Card>
+                    <UserProjects />
                 </ThemeProvider>
             </div>
         ) // End Return 

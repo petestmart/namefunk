@@ -1,4 +1,11 @@
 .projectName {
     padding: 15px;
-    padding-left: 250px;
+    padding-left: 25%;
+}
+
+.userProjectCard {
+    padding: 10px;
+    margin-left: 10%; 
+    margin-right: 10%; 
+    margin-top: 5px;
 }
