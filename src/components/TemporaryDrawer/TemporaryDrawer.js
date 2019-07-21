@@ -71,21 +71,26 @@ function TemporaryDrawer(props) {
             <Divider />
             <List>
                 <ListItem component={Link} to="/home" button><HomeIcon className="icon" /> Home</ListItem>
-                <ListItem component={Link} to="/names" button><FolderIcon className="icon" /> Saved Names</ListItem>
-                <ListItem component={Link} to="/project" button><DashboardIcon className="icon" /> My Project</ListItem>
+                {props.user.username ? <ListItem component={Link} to="/names" button><FolderIcon className="icon" /> Saved Names</ListItem> : <div></div> }
+                {props.user.username ? <ListItem component={Link} to="/project" button><DashboardIcon className="icon" /> My Project</ListItem> : <div></div>}
                 <ListItem component={Link} to="/about" button><InfoIcon className="icon" /> About</ListItem>
             </List>
 
             <Divider />
-            <List>
-                <ListItem
-                    component={Link} to="/home"
-                    onClick={() => props.dispatch({ type: 'LOGOUT' })}
-                    button>
-                    <AccountIcon className="icon" />
-                    Logout
+            {props.user.username ?
+                <List>
+                    <ListItem
+                        component={Link} to="/home"
+                        onClick={() => props.dispatch({ type: 'LOGOUT' })}
+                        button>
+                        <AccountIcon className="icon" />
+                        Logout
                     </ListItem>
-            </List>
+                </List>
+                :
+                <div></div>
+            }
+            
         </div>
     );
 

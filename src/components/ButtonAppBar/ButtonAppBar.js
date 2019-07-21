@@ -38,12 +38,22 @@ function ButtonAppBar(props) {
                     <Toolbar>
                         <TemporaryDrawer />
                         <Typography variant="h1" className={classes.title}>
-                            Welcome, {props.user.username}!
-                    </Typography>
-                        <Button
-                            color="inherit"
-                            onClick={() => props.dispatch({ type: 'LOGOUT' })}
-                        >Logout</Button>
+                            {props.user.username ?
+                                <div>Welcome, {props.user.username}!</div>
+                                :
+                                <div>Welcome To NameFunk!</div>
+                            }
+
+                        </Typography>
+                        {props.user.username ?
+                            <Button
+                                color="inherit"
+                                onClick={() => props.dispatch({ type: 'LOGOUT' })}
+                            >Logout</Button>
+                        :
+                        <div></div>
+                        }
+
                     </Toolbar>
                 </AppBar>
             </ThemeProvider>
